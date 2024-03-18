@@ -14,6 +14,8 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   sendEmailVerification,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from "firebase/auth";
 import { toast } from "react-toastify";
 import { ColorRing } from "react-loader-spinner";
@@ -21,11 +23,10 @@ import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
   const auth = getAuth();
+  const provider = new GoogleAuthProvider();
   const navigate = useNavigate();
-
   const [passwordShow, setPasswordShow] = useState(false);
   const [loadingButtonShow, setLoadingButtonShow] = useState(false);
-
   const [signUpData, setSignUpData] = useState({
     name: "",
     email: "",
@@ -98,6 +99,23 @@ const SignIn = () => {
           }
         });
     }
+  };
+
+  const handleGoogleSignUp = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        toast.success("Registration Successfull", {
+          position: "bottom-center",
+          autoClose: 3000,
+          theme: "dark",
+        });
+        navigate("/home");
+      })
+      .catch((error) => {});
+  };
+
+  const handleFaceBookSignUp = () => {
+    console.log("facebook");
   };
 
   return (
@@ -208,11 +226,11 @@ const SignIn = () => {
                   mt: "25px",
                 }}
               >
-                <SignButton>
+                <SignButton onClick={handleGoogleSignUp}>
                   <FcGoogle className="google-icon" />
                   Continue With Google
                 </SignButton>
-                <SignButton>
+                <SignButton onClick={handleFaceBookSignUp}>
                   <FaFacebook className="facebook-icon" />
                   Continue With Google
                 </SignButton>
@@ -325,7 +343,7 @@ const SignIn = () => {
                 <Button
                   variant="outlined"
                   sx={{
-                    mt: "40px",
+                    mt: "55px",
                     width: "100%",
                     borderRadius: "6px",
                     bgcolor: "primaryColor.main",
@@ -355,7 +373,7 @@ const SignIn = () => {
                   onClick={handleAccoutCreate}
                   variant="contained"
                   sx={{
-                    mt: "40px",
+                    mt: "55px",
                     width: "100%",
                     borderRadius: "6px",
                     bgcolor: "primaryColor.main",
@@ -379,8 +397,7 @@ const SignIn = () => {
               <Link to={"/sign-in"} className="link">
                 <Typography
                   sx={{
-                    py: "12px",
-                    fontWeight: "600",
+                    py: "10px",
                     fontFamily: "Poppins",
                     color: "#a1a1a1",
                   }}

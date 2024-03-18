@@ -18,9 +18,9 @@ import { useNavigate } from "react-router-dom";
 const SignIn = () => {
   const auth = getAuth();
   const navigate = useNavigate();
-
   const [passwordShow, setPasswordShow] = useState(false);
   const [loadingButtonShow, setLoadingButtonShow] = useState(false);
+  const [credentialErrorShow, setCredentialErrorShow] = useState(false);
 
   const [signInData, setSignInData] = useState({
     email: "",
@@ -31,8 +31,6 @@ const SignIn = () => {
     email: "",
     password: "",
   });
-
-  const [credentialErrorShow, setCredentialErrorShow] = useState(false);
 
   const handleInputChange = (element) => {
     setSignInData({
@@ -56,24 +54,30 @@ const SignIn = () => {
       setSignInError({ ...signInError, email: "Please Enter a valid email" });
     } else if (!signInData.password) {
       setSignInError({ ...signInError, password: "Please Enter Password" });
-    } else if (signInData.password.length < 6) {
-      setSignInError({ ...signInError, password: "Minimum 6 Chararters" });
     } else {
       setLoadingButtonShow(true);
-
       signInWithEmailAndPassword(auth, signInData.email, signInData.password)
         .then((userCredential) => {
-          toast.success(
-            "You've successfully logged in. Enjoy your experience!",
-            {
+          if (userCredential.user.emailVerified) {
+            toast.success(
+              "You've successfully logged in. Enjoy your experience!",
+              {
+                position: "bottom-center",
+                autoClose: 3000,
+                theme: "dark",
+              }
+            );
+            setSignInData({ email: "", password: "" });
+            setLoadingButtonShow(false);
+            navigate("/home");
+          } else {
+            setLoadingButtonShow(false);
+            toast.error("Please Varify Your Email First", {
               position: "bottom-center",
               autoClose: 3000,
               theme: "dark",
-            }
-          );
-          setSignInData({ email: "", password: "" });
-          setLoadingButtonShow(false);
-          navigate("/home")
+            });
+          }
         })
         .catch((error) => {
           setLoadingButtonShow(false);
@@ -82,39 +86,6 @@ const SignIn = () => {
             setCredentialErrorShow(true);
           }
         });
-
-      // createUserWithEmailAndPassword(
-      //   auth,
-      //   signInData.email,
-      //   signInData.password
-      // )
-      //   .then((userCredential) => {
-      //     sendEmailVerification(auth.currentUser).then(() => {
-      //       toast.success(
-      //         "Registration Successfull, Please check your email for verification",
-      //         {
-      //           position: "bottom-center",
-      //           autoClose: 3000,
-      //           theme: "dark",
-      //         }
-      //       );
-      //       setLoadingButtonShow(false);
-      //       setSignInData({ name: "", email: "", password: "" });
-      //       navigate("/sign-in");
-      //     });
-      //   })
-      //   .catch((error) => {
-      //     setLoadingButtonShow(false);
-      //     const errorMessage = error.message;
-      //     console.log(errorMessage);
-      //     if (errorMessage.includes("auth/email-already-in-use")) {
-      //       setSignInError({
-      //         ...signInError,
-      //         email:
-      //           "that email is already in use. Please use a different email",
-      //       });
-      //     }
-      //   });
     }
   };
 
@@ -171,17 +142,6 @@ const SignIn = () => {
                 - OR -
               </Typography>
               <Box sx={{ mt: "25px" }}>
-                {credentialErrorShow && (
-                  <Alert
-                    severity="error"
-                    sx={{
-                      width: "100%",
-                      mb: "10px",
-                    }}
-                  >
-                    Invalid email or password. Please try again
-                  </Alert>
-                )}
                 <Box sx={{ position: "relative" }}>
                   <TextField
                     onChange={handleInputChange}
@@ -245,62 +205,81 @@ const SignIn = () => {
                     />
                   )}
                 </Box>
+                <Link to={"/forget-password"} className="forget-password">
+                  forget password?
+                </Link>
               </Box>
 
-              {loadingButtonShow ? (
-                <Button
-                  variant="outlined"
-                  sx={{
-                    mt: "40px",
-                    width: "100%",
-                    borderRadius: "6px",
-                    bgcolor: "primaryColor.main",
-                    mb: "20px",
-                    ":hover": {
+              <Box sx={{ pt: "40px", position: "relative" }}>
+                {credentialErrorShow && (
+                  <Alert
+                    severity="error"
+                    sx={{
+                      width: "100%",
+                      mb: "10px",
+                      position: "absolute",
+                      top: "0",
+                      left: "0",
+                      zIndex: "9",
+                    }}
+                  >
+                    Invalid email or password. Please try again
+                  </Alert>
+                )}
+                {loadingButtonShow ? (
+                  <Button
+                    variant="outlined"
+                    sx={{
+                      width: "100%",
+                      borderRadius: "6px",
                       bgcolor: "primaryColor.main",
-                    },
-                  }}
-                >
-                  <ColorRing
-                    visible={true}
-                    height="37"
-                    width="37"
-                    ariaLabel="color-ring-loading"
-                    wrapperClass="color-ring-wrapper"
-                    colors={[
-                      "#e15b64",
-                      "#f47e60",
-                      "#f8b26a",
-                      "#abbd81",
-                      "#849b87",
-                    ]}
-                  />
-                </Button>
-              ) : (
-                <Button
-                  onClick={handleAccoutCreate}
-                  variant="contained"
-                  sx={{
-                    mt: "40px",
-                    width: "100%",
-                    borderRadius: "6px",
-                    bgcolor: "primaryColor.main",
-                    py: "12px",
-                    fontWeight: "500",
-                    fontFamily: "Poppins",
-                    textTransform: "capitalize",
-                    mb: "20px",
-                    ":hover": {
+                      mb: "20px",
+                      ":hover": {
+                        bgcolor: "primaryColor.main",
+                      },
+                    }}
+                  >
+                    <ColorRing
+                      visible={true}
+                      height="37"
+                      width="37"
+                      ariaLabel="color-ring-loading"
+                      wrapperClass="color-ring-wrapper"
+                      colors={[
+                        "#e15b64",
+                        "#f47e60",
+                        "#f8b26a",
+                        "#abbd81",
+                        "#849b87",
+                      ]}
+                    />
+                  </Button>
+                ) : (
+                  <Button
+                    onClick={handleAccoutCreate}
+                    variant="contained"
+                    sx={{
+                      width: "100%",
+                      borderRadius: "6px",
                       bgcolor: "primaryColor.main",
-                    },
-                    ":active": {
-                      transform: "scale(1.01)",
-                    },
-                  }}
-                >
-                  Create Your Account
-                </Button>
-              )}
+                      py: "12px",
+                      fontWeight: "500",
+                      fontFamily: "Poppins",
+                      textTransform: "capitalize",
+                      mb: "20px",
+                      ":hover": {
+                        bgcolor: "primaryColor.main",
+                      },
+                      ":active": {
+                        transform: "scale(1.01)",
+                      },
+                    }}
+                  >
+                    Create Your Account
+                  </Button>
+                )}
+              </Box>
+
               <Link to={"/"} className="link">
                 <Typography
                   sx={{

@@ -20,6 +20,19 @@
   color: #32375c;
   margin-left: 5px;
 }
-.masseg-icon{
-    transform: scaleX(-1)
+.masseg-icon {
+  transform: scaleX(-1);
+}
+.forget-password{
+  text-decoration: none;
+  color: #32375c;
+  text-transform: capitalize;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+  margin: 15px 0 0 0;
+  font-size: 12px;
+  display: inline-block;
+}
+.forget-password:hover{
+  text-decoration: underline;
 }

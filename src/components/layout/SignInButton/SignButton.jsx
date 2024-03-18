@@ -1,9 +1,10 @@
 import React from "react";
 import { Button } from "@mui/material";
 
-const SignButton = ({ children }) => {
+const SignButton = ({ onClick, children }) => {
   return (
     <Button
+      onClick={onClick}
       variant="outlined"
       sx={{
         width: "48%",
