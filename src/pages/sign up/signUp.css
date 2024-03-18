@@ -1,0 +1,22 @@
+.google-icon {
+  font-size: 20px;
+  margin-right: 10px;
+}
+.facebook-icon {
+  font-size: 20px;
+  margin-right: 10px;
+  color: blue;
+}
+.eye-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  cursor: pointer;
+}
+.link {
+  text-decoration: none;
+}
+.hightLight-txt {
+  color: #32375c;
+  margin-left: 5px;
+}
