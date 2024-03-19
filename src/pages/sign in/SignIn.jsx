@@ -272,7 +272,7 @@ const SignIn = () => {
                       },
                     }}
                   >
-                    Create Your Account
+                    Log in
                   </Button>
                 )}
               </Box>
