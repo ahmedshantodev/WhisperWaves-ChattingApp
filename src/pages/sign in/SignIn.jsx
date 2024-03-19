@@ -69,7 +69,7 @@ const SignIn = () => {
             );
             setSignInData({ email: "", password: "" });
             setLoadingButtonShow(false);
-            navigate("/pages");
+            navigate("/pages/home");
           } else {
             setLoadingButtonShow(false);
             toast.error("Please Varify Your Email First", {
@@ -228,15 +228,12 @@ const SignIn = () => {
                 )}
                 {loadingButtonShow ? (
                   <Button
-                    variant="outlined"
+                    variant="contained"
+                    disabled
                     sx={{
                       width: "100%",
                       borderRadius: "6px",
-                      bgcolor: "primaryColor.main",
                       mb: "20px",
-                      ":hover": {
-                        bgcolor: "primaryColor.main",
-                      },
                     }}
                   >
                     <ColorRing

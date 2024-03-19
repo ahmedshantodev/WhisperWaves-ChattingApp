@@ -1,0 +1,42 @@
+#sidebar-menu .menu-icon {
+  font-size: 24px;
+  margin: 0 10px 0 0;
+}
+#sidebar-menu ul {
+  list-style: none;
+}
+#sidebar-menu .menu-item {
+  background-color: white;
+  color: black;
+  padding: 12px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-size: 22px;
+  text-transform: capitalize;
+  font-family: "Inter", sans-serif;
+  width: 100%;
+  margin: 0 0 16px 0;
+  transition: all;
+  transition-duration: 300ms;
+  transition-timing-function: linear;
+}
+#sidebar-menu .menu-item:hover {
+  color: white;
+  background-color: #32375c;
+}
+#sidebar-menu .menu-item-acitve {
+  background-color: #32375c;
+  padding: 12px;
+  border-radius: 6px;
+  color: white;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-size: 22px;
+  text-transform: capitalize;
+  font-family: "Inter", sans-serif;
+  width: 100%;
+  margin: 0 0 16px 0;
+}

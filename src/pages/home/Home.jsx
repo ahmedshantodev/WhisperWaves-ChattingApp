@@ -1,9 +1,12 @@
 import React from 'react'
 import './home.css'
+import { Box } from '@mui/material'
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <Box sx={{p: "48px 24px"}}>
+      home
+    </Box>
   )
 }
 

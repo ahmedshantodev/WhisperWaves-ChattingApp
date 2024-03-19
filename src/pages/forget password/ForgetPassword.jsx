@@ -96,7 +96,7 @@ const ForgetPassword = () => {
             <MdOutlineMail className="icon" />
             <input
               value={resetEmail}
-              name="mail"
+              name="email"
               onChange={(e) => setResetEmail(e.target.value)}
               type="text"
               placeholder="enter Your Email"
@@ -106,6 +106,7 @@ const ForgetPassword = () => {
           {loadingButtonShow ? (
             <Button
               variant="contained"
+              disabled
               sx={{
                 mt: "15px",
                 width: "100%",

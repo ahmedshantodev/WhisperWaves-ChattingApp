@@ -4,7 +4,6 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import "./App.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SignUp from "./pages/sign up/SignUp";
@@ -13,6 +12,10 @@ import ForgetPassword from "./pages/forget password/ForgetPassword";
 import Pages from "./pages/Pages";
 import Home from "./pages/home/Home";
 import Message from "./pages/message/Message";
+import Chat from "./pages/chat/Chat";
+import Group from "./pages/group/Group";
+import Friends from "./pages/friends/Friends";
+import AccountSetting from "./pages/account setting/AccountSetting";
 
 function App() {
   let router = createBrowserRouter(
@@ -24,6 +27,10 @@ function App() {
         <Route path="/pages" element={<Pages />}>
           <Route path="home" element={<Home />} />
           <Route path="message" element={<Message />} />
+          <Route path="chat" element={<Chat />} />
+          <Route path="group" element={<Group />} />
+          <Route path="friends" element={<Friends />} />
+          <Route path="account-setting" element={<AccountSetting />} />
         </Route>
       </Route>
     )

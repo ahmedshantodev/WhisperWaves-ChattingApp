@@ -7,10 +7,10 @@ const Pages = () => {
   return (
     <Box>
       <Grid container>
-        <Grid xs={1}>
+        <Grid xs={1.3}>
           <SideBarMenu />
         </Grid>
-        <Grid xs={11}>
+        <Grid xs={10.7}>
           <Outlet />
         </Grid>
       </Grid>

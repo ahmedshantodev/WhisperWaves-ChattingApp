@@ -83,7 +83,7 @@ const SignIn = () => {
             );
             setLoadingButtonShow(false);
             setSignUpData({ name: "", email: "", password: "" });
-            navigate("/pages");
+            navigate("/sign-in");
           });
         })
         .catch((error) => {
@@ -108,7 +108,7 @@ const SignIn = () => {
           autoClose: 3000,
           theme: "dark",
         });
-        navigate("/pages");
+        navigate("/pages/home");
       })
       .catch((error) => {});
   };
@@ -340,16 +340,13 @@ const SignIn = () => {
 
               {loadingButtonShow ? (
                 <Button
-                  variant="outlined"
+                  disabled
+                  variant="contained"
                   sx={{
                     mt: "55px",
                     width: "100%",
                     borderRadius: "6px",
-                    bgcolor: "primaryColor.main",
                     mb: "20px",
-                    ":hover": {
-                      bgcolor: "primaryColor.main",
-                    },
                   }}
                 >
                   <ColorRing
