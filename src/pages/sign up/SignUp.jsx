@@ -83,13 +83,12 @@ const SignIn = () => {
             );
             setLoadingButtonShow(false);
             setSignUpData({ name: "", email: "", password: "" });
-            navigate("/sign-in");
+            navigate("/pages");
           });
         })
         .catch((error) => {
           setLoadingButtonShow(false);
           const errorMessage = error.message;
-          console.log(errorMessage);
           if (errorMessage.includes("auth/email-already-in-use")) {
             setSignUpError({
               ...signUpError,
@@ -109,7 +108,7 @@ const SignIn = () => {
           autoClose: 3000,
           theme: "dark",
         });
-        navigate("/home");
+        navigate("/pages");
       })
       .catch((error) => {});
   };

@@ -20,7 +20,7 @@ const ForgetPassword = () => {
         .then(() => {
           setLoadingButtonShow(false);
           setResetEmail("");
-          toast.success("Please check your email for reset you password", {
+          toast.success("Please check your email for reset your password", {
             position: "bottom-center",
             autoClose: 3000,
             theme: "dark",

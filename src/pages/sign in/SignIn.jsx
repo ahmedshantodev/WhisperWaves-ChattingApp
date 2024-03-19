@@ -69,7 +69,7 @@ const SignIn = () => {
             );
             setSignInData({ email: "", password: "" });
             setLoadingButtonShow(false);
-            navigate("/home");
+            navigate("/pages");
           } else {
             setLoadingButtonShow(false);
             toast.error("Please Varify Your Email First", {
