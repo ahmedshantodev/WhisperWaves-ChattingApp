@@ -4,7 +4,6 @@ import "./SideBarMenu.css";
 import Menu from "../../components/section/Menu/Menu";
 import Image from "../../components/layout/Image";
 import profileImage from "../../../public/image/profile image one.png";
-import { PiGearDuotone } from "react-icons/pi";
 import { Link } from "react-router-dom";
 
 const SideBarMenu = () => {

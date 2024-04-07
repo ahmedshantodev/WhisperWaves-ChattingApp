@@ -14,10 +14,14 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { toast } from "react-toastify";
 import { ColorRing } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { activeUser } from "../../slices/userSlices";
 
 const SignIn = () => {
   const auth = getAuth();
   const navigate = useNavigate();
+  const dispatch = useDispatch()
+
   const [passwordShow, setPasswordShow] = useState(false);
   const [loadingButtonShow, setLoadingButtonShow] = useState(false);
   const [credentialErrorShow, setCredentialErrorShow] = useState(false);
@@ -69,6 +73,8 @@ const SignIn = () => {
             );
             setSignInData({ email: "", password: "" });
             setLoadingButtonShow(false);
+            localStorage.setItem("user", JSON.stringify(userCredential.user))
+            dispatch(activeUser(userCredential.user))
             navigate("/pages/home");
           } else {
             setLoadingButtonShow(false);
@@ -144,6 +150,7 @@ const SignIn = () => {
               <Box sx={{ mt: "25px" }}>
                 <Box sx={{ position: "relative" }}>
                   <TextField
+                    error={signInError.email ? true : false}
                     onChange={handleInputChange}
                     name="email"
                     value={signInData.email}
@@ -154,22 +161,22 @@ const SignIn = () => {
                     sx={{ width: "100%", mb: "28px" }}
                   />
                   {signInError.email && (
-                    <Alert
-                      severity="error"
+                    <Typography
                       sx={{
-                        width: "100%",
                         position: "absolute",
-                        bottom: "-20px",
+                        bottom: "5px",
                         left: "0",
-                        zIndex: "5",
+                        color: "#d32f2f",
+                        fontSize: "14px",
                       }}
                     >
                       {signInError.email}
-                    </Alert>
+                    </Typography>
                   )}
                 </Box>
                 <Box sx={{ position: "relative" }}>
                   <TextField
+                    error={signInError.password ? true : false}
                     value={signInData.password}
                     onChange={handleInputChange}
                     name="password"
@@ -180,18 +187,17 @@ const SignIn = () => {
                     sx={{ width: "100%" }}
                   />
                   {signInError.password && (
-                    <Alert
-                      severity="error"
+                    <Typography
                       sx={{
-                        width: "100%",
                         position: "absolute",
-                        bottom: "-50px",
+                        bottom: "-20px",
                         left: "0",
-                        zIndex: "5",
+                        color: "#d32f2f",
+                        fontSize: "14px",
                       }}
                     >
                       {signInError.password}
-                    </Alert>
+                    </Typography>
                   )}
                   {passwordShow ? (
                     <FaEye

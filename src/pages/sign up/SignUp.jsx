@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "./signUp.css";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
@@ -116,6 +116,8 @@ const SignIn = () => {
   const handleFaceBookSignUp = () => {
     console.log("facebook");
   };
+
+  const inputRef = useRef(null);
 
   return (
     <section>
@@ -249,6 +251,8 @@ const SignIn = () => {
               <Box sx={{ mt: "25px" }}>
                 <Box sx={{ position: "relative" }}>
                   <TextField
+                    focused={signUpError.name ? true : false}
+                    error={signUpError.name ? true : false}
                     onChange={handleInputChange}
                     name="name"
                     value={signUpData.name}
@@ -259,22 +263,23 @@ const SignIn = () => {
                     sx={{ width: "100%", mb: "28px" }}
                   />
                   {signUpError.name && (
-                    <Alert
-                      severity="error"
+                    <Typography
                       sx={{
-                        width: "100%",
                         position: "absolute",
-                        bottom: "-20px",
+                        bottom: "5px",
                         left: "0",
-                        zIndex: "5",
+                        color: "#d32f2f",
+                        fontSize: "14px",
                       }}
                     >
                       {signUpError.name}
-                    </Alert>
+                    </Typography>
                   )}
                 </Box>
                 <Box sx={{ position: "relative" }}>
                   <TextField
+                    focused={signUpError.email ? true : false}
+                    error={signUpError.email ? true : false}
                     onChange={handleInputChange}
                     name="email"
                     value={signUpData.email}
@@ -285,22 +290,23 @@ const SignIn = () => {
                     sx={{ width: "100%", mb: "28px" }}
                   />
                   {signUpError.email && (
-                    <Alert
-                      severity="error"
+                    <Typography
                       sx={{
-                        width: "100%",
                         position: "absolute",
-                        bottom: "-20px",
+                        bottom: "5px",
                         left: "0",
-                        zIndex: "5",
+                        color: "#d32f2f",
+                        fontSize: "14px",
                       }}
                     >
                       {signUpError.email}
-                    </Alert>
+                    </Typography>
                   )}
                 </Box>
                 <Box sx={{ position: "relative" }}>
                   <TextField
+                    focused={signUpError.password ? true : false}
+                    error={signUpError.password ? true : false}
                     value={signUpData.password}
                     onChange={handleInputChange}
                     name="password"
@@ -311,18 +317,17 @@ const SignIn = () => {
                     sx={{ width: "100%" }}
                   />
                   {signUpError.password && (
-                    <Alert
-                      severity="error"
+                    <Typography
                       sx={{
-                        width: "100%",
                         position: "absolute",
-                        bottom: "-50px",
+                        bottom: "-20px",
                         left: "0",
-                        zIndex: "5",
+                        color: "#d32f2f",
+                        fontSize: "14px",
                       }}
                     >
                       {signUpError.password}
-                    </Alert>
+                    </Typography>
                   )}
                   {passwordShow ? (
                     <FaEye
