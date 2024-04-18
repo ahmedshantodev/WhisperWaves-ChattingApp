@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 const Pages = () => {
   let navigate = useNavigate();
   let data = useSelector((state) => state?.user?.information);
-console.log(Boolean(!data.email))
+
   useEffect(() => {
     if (!data?.email) {
       navigate("/sign-in");

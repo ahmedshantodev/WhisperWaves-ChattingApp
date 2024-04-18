@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./signIn.css";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
@@ -14,14 +14,14 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { toast } from "react-toastify";
 import { ColorRing } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { activeUser } from "../../slices/userSlices";
 
 const SignIn = () => {
   const auth = getAuth();
   const navigate = useNavigate();
   const dispatch = useDispatch()
-
+  const data = useSelector((state) => state?.user?.information)
   const [passwordShow, setPasswordShow] = useState(false);
   const [loadingButtonShow, setLoadingButtonShow] = useState(false);
   const [credentialErrorShow, setCredentialErrorShow] = useState(false);
@@ -94,6 +94,12 @@ const SignIn = () => {
         });
     }
   };
+
+  useEffect(() => {
+    if (data?.email) {
+      navigate("/pages/home")
+    }
+  } , [])
 
   return (
     <section>
