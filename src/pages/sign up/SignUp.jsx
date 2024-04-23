@@ -16,6 +16,7 @@ import {
   sendEmailVerification,
   GoogleAuthProvider,
   signInWithPopup,
+  updateProfile,
 } from "firebase/auth";
 import { toast } from "react-toastify";
 import { ColorRing } from "react-loader-spinner";
@@ -72,19 +73,30 @@ const SignIn = () => {
         signUpData.password
       )
         .then((userCredential) => {
-          sendEmailVerification(auth.currentUser).then(() => {
-            toast.success(
-              "Registration Successfull, Please check your email for verification",
-              {
-                position: "bottom-center",
-                autoClose: 3000,
-                theme: "dark",
-              }
-            );
-            setLoadingButtonShow(false);
-            setSignUpData({ name: "", email: "", password: "" });
-            navigate("/sign-in");
-          });
+          updateProfile(auth.currentUser, {
+            displayName: signUpData.name,
+            photoURL:
+              "https://firebasestorage.googleapis.com/v0/b/bachal-4607f.appspot.com/o/avatar%2Fistockphoto-1300845620-612x612.jpg?alt=media&token=960187d4-de75-441a-a736-12783c126c69",
+          })
+            .then(() => {
+              sendEmailVerification(auth.currentUser).then(() => {
+                toast.success(
+                  "Registration Successfull, Please check your email for verification",
+                  {
+                    position: "bottom-center",
+                    autoClose: 3000,
+                    theme: "dark",
+                  }
+                );
+                setLoadingButtonShow(false);
+                setSignUpData({ name: "", email: "", password: "" });
+                navigate("/sign-in");
+              });
+            })
+            .catch((error) => {
+              setLoadingButtonShow(false);
+              console.log(error)
+            });
         })
         .catch((error) => {
           setLoadingButtonShow(false);

@@ -4,7 +4,7 @@ import "./Menu.css";
 import { TiHome } from "react-icons/ti";
 import { HiOutlineChatBubbleLeft } from "react-icons/hi2";
 import { HiOutlineUser, HiOutlineUsers } from "react-icons/hi2";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import List from "../../layout/List";
 import ListItem from "../../layout/ListItem";
 

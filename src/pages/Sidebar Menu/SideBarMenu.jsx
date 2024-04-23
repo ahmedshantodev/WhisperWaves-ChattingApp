@@ -5,8 +5,12 @@ import Menu from "../../components/section/Menu/Menu";
 import Image from "../../components/layout/Image";
 import profileImage from "../../../public/image/profile image one.png";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const SideBarMenu = () => {
+  const userInfo = useSelector((state) => state.user.information);
+  console.log(userInfo.photoURL);
+
   return (
     <Box
       id="side-bar-menu"
@@ -36,7 +40,8 @@ const SideBarMenu = () => {
         }}
       >
         <Image
-          imageLink={profileImage}
+          // imageLink={profileImage}
+          imageLink={userInfo.photoURL}
           altText={"profile-image"}
           className={"profile-image"}
         />
@@ -52,7 +57,7 @@ const SideBarMenu = () => {
                 textTransform: "capitalize",
               }}
             >
-              monsur ahmed shanto
+              {userInfo.displayName}
             </Typography>
             <Typography sx={{ fontSize: "12px", color: "secondaryText.main" }}>
               Profile Edit
