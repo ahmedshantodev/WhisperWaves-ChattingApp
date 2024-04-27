@@ -1,9 +1,15 @@
 import { Box, Button, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState, createRef } from "react";
 import { toast } from "react-toastify";
-import { getAuth, signOut } from "firebase/auth";
+import { getAuth, signOut, updateProfile } from "firebase/auth";
+import {
+  getStorage,
+  ref,
+  uploadString,
+  getDownloadURL,
+} from "firebase/storage";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { activeUser } from "../../slices/userSlices";
 import "./accountSetting.css";
 import Image from "../../components/layout/Image";
@@ -13,10 +19,21 @@ import profileImage from "/public/image/WhatsApp Image 2024-01-23 at 2.39.21 PMd
 import Modal from "@mui/material/Modal";
 import { IoClose } from "react-icons/io5";
 
+// react cropper package
+import Cropper from "react-cropper";
+import "cropperjs/dist/cropper.css";
+
+const defaultSrc =
+  "https://raw.githubusercontent.com/roadmanfong/react-cropper/master/example/img/child.jpg";
+
 const AccountSetting = () => {
+  const userInfo = useSelector((state) => state.user.information);
   const auth = getAuth();
   let navigate = useNavigate();
   let dispatch = useDispatch();
+
+  const storage = getStorage();
+  const storageRef = ref(storage, `profile-${userInfo.uid}`);
 
   const [profileEditModalOpen, setProfileEditModalOpen] = useState(false);
   const handleProfileEditModalOpen = () => setProfileEditModalOpen(true);
@@ -25,6 +42,44 @@ const AccountSetting = () => {
   const [profileImageModalOpen, setProfileImageModalOpen] = useState(false);
   const handleProfileImageModalOpen = () => setProfileImageModalOpen(true);
   const handleProfileImageModalClose = () => setProfileImageModalOpen(false);
+
+  // react cropper package
+  const [image, setImage] = useState(defaultSrc);
+  const [cropData, setCropData] = useState("#");
+  const cropperRef = createRef();
+
+  const handleProfileImageUploadData = (e) => {
+    let files;
+    if (e.dataTransfer) {
+      files = e.dataTransfer.files;
+    } else if (e.target) {
+      files = e.target.files;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      setImage(reader.result);
+    };
+    reader.readAsDataURL(files[0]);
+  };
+
+  // getCropData
+  const photoUpload = () => {
+    const message4 = cropperRef.current?.cropper.getCroppedCanvas().toDataURL();
+    uploadString(storageRef, message4, "data_url").then((snapshot) => {
+      getDownloadURL(storageRef).then((downloadURL) => {
+        console.log("File available at", downloadURL);
+        updateProfile(auth.currentUser, {
+          photoURL: downloadURL,
+        }).then(() => {
+          localStorage.setItem(
+            "user",
+            JSON.stringify({ ...userInfo, photoURL: downloadURL })
+          );
+          dispatch(activeUser({ ...userInfo, photoURL: downloadURL }));
+        });
+      });
+    });
+  };
 
   const handleSignOut = () => {
     signOut(auth)
@@ -62,7 +117,7 @@ const AccountSetting = () => {
             />
             <Image
               onClick={handleProfileImageModalOpen}
-              imageLink={profileImage}
+              imageLink={userInfo.photoURL}
               altText={"random-profile"}
               className={"profileImage"}
             />
@@ -78,24 +133,54 @@ const AccountSetting = () => {
                   top: "50%",
                   left: "50%",
                   transform: "translate(-50%, -50%)",
-                  width: 700,
+
                   bgcolor: "white",
                   border: "2px solid white",
                   boxShadow: 2,
                   borderRadius: "10px",
+                  overflow: "hidden",
+                  p: 7,
+                  boxSizing: "border-box",
                 }}
               >
+                <Typography>Upload New Photo As Profile Picture</Typography>
+                <input type="file" onChange={handleProfileImageUploadData} />
                 <IoClose
                   onClick={handleProfileImageModalClose}
                   className="profileEditModalCloseBtn"
                 />
-                <Typography id="modal-modal-title" variant="h6" component="h2">
-                  Text in a modal
-                </Typography>
-                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                  Duis mollis, est non commodo luctus, nisi erat porttitor
-                  ligula.
-                </Typography>
+                <Box sx={{ display: "flex", alignItems: "center" }}>
+                  <div className="box">
+                    <h1>Preview</h1>
+                    <div
+                      className="img-preview"
+                      style={{ width: "100%", height: "300px" }}
+                    />
+                  </div>
+                  <Cropper
+                    ref={cropperRef}
+                    style={{ height: 400 }}
+                    zoomTo={0.1}
+                    initialAspectRatio={1}
+                    preview=".img-preview"
+                    src={image}
+                    viewMode={1}
+                    minCropBoxHeight={10}
+                    minCropBoxWidth={10}
+                    background={false}
+                    responsive={true}
+                    autoCropArea={1}
+                    checkOrientation={false}
+                    guides={true}
+                  />
+                </Box>
+                <Button
+                  onClick={photoUpload}
+                  variant="contained"
+                  sx={{ width: "400px", margin: "50px 300px 0px" }}
+                >
+                  upload photo
+                </Button>
               </Box>
             </Modal>
           </Box>
@@ -117,10 +202,10 @@ const AccountSetting = () => {
                   fontSize: "30px",
                 }}
               >
-                Monsur Ahmed Shanto
+                {userInfo.displayName}
               </Typography>
               <Typography className="bio" sx={{ width: "380px" }}>
-                Frontend Developer | React Js | Firebase
+                Stay Home Stay Safe
               </Typography>
             </Box>
             <Button

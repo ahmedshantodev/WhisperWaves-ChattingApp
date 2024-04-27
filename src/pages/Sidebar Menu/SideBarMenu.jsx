@@ -9,7 +9,6 @@ import { useSelector } from "react-redux";
 
 const SideBarMenu = () => {
   const userInfo = useSelector((state) => state.user.information);
-  console.log(userInfo.photoURL);
 
   return (
     <Box

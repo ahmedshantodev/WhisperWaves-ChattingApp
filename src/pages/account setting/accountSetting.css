@@ -1,32 +1,45 @@
-.account-setting-container{
-    padding: 60px 70px;
+.account-setting-container {
+  padding: 60px 70px;
 }
-.coverPhoto{
-    width: 100%;
-    height: 350px;
-    vertical-align: middle;
-    object-fit: cover;
+.coverPhoto {
+  width: 100%;
+  height: 350px;
+  vertical-align: middle;
+  object-fit: cover;
 }
-.profileImage{
-    width: 200px;
-    height: 200px;
-    border-radius: 100%;
-    border: 5px solid white;
-    position: absolute;
-    bottom: -60px;
-    left: 40px;
-    cursor: pointer;
+.profileImage {
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  border: 5px solid white;
+  position: absolute;
+  bottom: -60px;
+  left: 40px;
+  cursor: pointer;
 }
-.edit-icon{
-    font-size: 23px;
+.edit-icon {
+  font-size: 23px;
 }
-.profileEditModalCloseBtn{
-    background-color: #d8dadf;
-    padding: 5px;
-    border-radius: 100%;
-    font-size: 30px;
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    cursor: pointer;
+.profileEditModalCloseBtn {
+  background-color: #d8dadf;
+  padding: 5px;
+  border-radius: 100%;
+  font-size: 30px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+}
+.box{
+    margin: 0 20px 0 0;
+    overflow: hidden;
+}
+.img-preview {
+  overflow: hidden;
+  margin: 0 auto;
+  max-height: 300px;
+  min-height: 300px;
+  min-width: 300px;
+  max-width: 300px;
+  border-radius: 100%;
 }
