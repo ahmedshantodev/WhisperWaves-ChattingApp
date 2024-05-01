@@ -30,9 +30,9 @@
   right: 15px;
   cursor: pointer;
 }
-.box{
-    margin: 0 20px 0 0;
-    overflow: hidden;
+.box {
+  margin: 0 20px 0 0;
+  overflow: hidden;
 }
 .img-preview {
   overflow: hidden;

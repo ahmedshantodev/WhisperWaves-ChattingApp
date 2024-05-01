@@ -64,10 +64,9 @@ const AccountSetting = () => {
 
   // getCropData
   const photoUpload = () => {
-    const message4 = cropperRef.current?.cropper.getCroppedCanvas().toDataURL();
-    uploadString(storageRef, message4, "data_url").then((snapshot) => {
+    const profileImage = cropperRef.current?.cropper.getCroppedCanvas().toDataURL();
+    uploadString(storageRef, profileImage, "data_url").then((snapshot) => {
       getDownloadURL(storageRef).then((downloadURL) => {
-        console.log("File available at", downloadURL);
         updateProfile(auth.currentUser, {
           photoURL: downloadURL,
         }).then(() => {
