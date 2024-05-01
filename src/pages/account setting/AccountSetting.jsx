@@ -18,33 +18,28 @@ import coverPhoto from "/public/image/coverPhoto2.jpg";
 import profileImage from "/public/image/WhatsApp Image 2024-01-23 at 2.39.21 PMdsd.jpeg";
 import Modal from "@mui/material/Modal";
 import { IoClose } from "react-icons/io5";
+import { ColorRing } from "react-loader-spinner";
 
 // react cropper package
 import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
-
-const defaultSrc =
-  "https://raw.githubusercontent.com/roadmanfong/react-cropper/master/example/img/child.jpg";
 
 const AccountSetting = () => {
   const userInfo = useSelector((state) => state.user.information);
   const auth = getAuth();
   let navigate = useNavigate();
   let dispatch = useDispatch();
-
   const storage = getStorage();
   const storageRef = ref(storage, `profile-${userInfo.uid}`);
-
   const [profileEditModalOpen, setProfileEditModalOpen] = useState(false);
   const handleProfileEditModalOpen = () => setProfileEditModalOpen(true);
   const handleProfileEditModalClose = () => setProfileEditModalOpen(false);
-
   const [profileImageModalOpen, setProfileImageModalOpen] = useState(false);
   const handleProfileImageModalOpen = () => setProfileImageModalOpen(true);
   const handleProfileImageModalClose = () => setProfileImageModalOpen(false);
-
+  const [loaderShow, setLoaderShow] = useState(false);
   // react cropper package
-  const [image, setImage] = useState(defaultSrc);
+  const [image, setImage] = useState("");
   const [cropData, setCropData] = useState("#");
   const cropperRef = createRef();
 
@@ -64,7 +59,10 @@ const AccountSetting = () => {
 
   // getCropData
   const photoUpload = () => {
-    const profileImage = cropperRef.current?.cropper.getCroppedCanvas().toDataURL();
+    setLoaderShow(true);
+    const profileImage = cropperRef.current?.cropper
+      .getCroppedCanvas()
+      .toDataURL();
     uploadString(storageRef, profileImage, "data_url").then((snapshot) => {
       getDownloadURL(storageRef).then((downloadURL) => {
         updateProfile(auth.currentUser, {
@@ -75,6 +73,9 @@ const AccountSetting = () => {
             JSON.stringify({ ...userInfo, photoURL: downloadURL })
           );
           dispatch(activeUser({ ...userInfo, photoURL: downloadURL }));
+          setLoaderShow(false);
+          setProfileImageModalOpen(false);
+          setImage("")
         });
       });
     });
@@ -132,7 +133,6 @@ const AccountSetting = () => {
                   top: "50%",
                   left: "50%",
                   transform: "translate(-50%, -50%)",
-
                   bgcolor: "white",
                   border: "2px solid white",
                   boxShadow: 2,
@@ -148,38 +148,78 @@ const AccountSetting = () => {
                   onClick={handleProfileImageModalClose}
                   className="profileEditModalCloseBtn"
                 />
-                <Box sx={{ display: "flex", alignItems: "center" }}>
-                  <div className="box">
-                    <h1>Preview</h1>
-                    <div
-                      className="img-preview"
-                      style={{ width: "100%", height: "300px" }}
-                    />
-                  </div>
-                  <Cropper
-                    ref={cropperRef}
-                    style={{ height: 400 }}
-                    zoomTo={0.1}
-                    initialAspectRatio={1}
-                    preview=".img-preview"
-                    src={image}
-                    viewMode={1}
-                    minCropBoxHeight={10}
-                    minCropBoxWidth={10}
-                    background={false}
-                    responsive={true}
-                    autoCropArea={1}
-                    checkOrientation={false}
-                    guides={true}
-                  />
-                </Box>
-                <Button
-                  onClick={photoUpload}
-                  variant="contained"
-                  sx={{ width: "400px", margin: "50px 300px 0px" }}
-                >
-                  upload photo
-                </Button>
+                {image && (
+                  <Box>
+                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                      <Box className="box">
+                        <Typography sx={{ textAlign: "center" }}>
+                          Preview
+                        </Typography>
+                        <Box
+                          className="img-preview"
+                          style={{ width: "100%", height: "300px" }}
+                        />
+                      </Box>
+                      <Box sx={{ width: "700px", margin: "0 auto" }}>
+                        <Cropper
+                          ref={cropperRef}
+                          style={{ height: 400 }}
+                          zoomTo={0.1}
+                          initialAspectRatio={1}
+                          preview=".img-preview"
+                          src={image}
+                          viewMode={1}
+                          minCropBoxHeight={10}
+                          minCropBoxWidth={10}
+                          background={false}
+                          responsive={true}
+                          autoCropArea={1}
+                          checkOrientation={false}
+                          guides={true}
+                        />
+                      </Box>
+                    </Box>
+                    {loaderShow ? (
+                      <Button
+                        onClick={photoUpload}
+                        variant="contained"
+                        sx={{
+                          width: "400px",
+                          margin: "50px 300px 0px",
+                          p: "5px 0",
+                        }}
+                      >
+                        <ColorRing
+                          visible={true}
+                          height="35"
+                          width="35"
+                          ariaLabel="color-ring-loading"
+                          wrapperStyle={{}}
+                          wrapperClass="color-ring-wrapper"
+                          colors={[
+                            "#ffffff",
+                            "#ffffff",
+                            "#ffffff",
+                            "#ffffff",
+                            "#ffffff",
+                          ]}
+                        />
+                      </Button>
+                    ) : (
+                      <Button
+                        onClick={photoUpload}
+                        variant="contained"
+                        sx={{
+                          width: "400px",
+                          margin: "50px 300px 0px",
+                          p: "10px 0",
+                        }}
+                      >
+                        upload photo
+                      </Button>
+                    )}
+                  </Box>
+                )}
               </Box>
             </Modal>
           </Box>
