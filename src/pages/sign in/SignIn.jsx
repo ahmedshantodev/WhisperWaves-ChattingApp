@@ -20,8 +20,8 @@ import { activeUser } from "../../slices/userSlices";
 const SignIn = () => {
   const auth = getAuth();
   const navigate = useNavigate();
-  const dispatch = useDispatch()
-  const data = useSelector((state) => state?.user?.information)
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state?.user?.information);
   const [passwordShow, setPasswordShow] = useState(false);
   const [loadingButtonShow, setLoadingButtonShow] = useState(false);
   const [credentialErrorShow, setCredentialErrorShow] = useState(false);
@@ -63,6 +63,10 @@ const SignIn = () => {
       signInWithEmailAndPassword(auth, signInData.email, signInData.password)
         .then((userCredential) => {
           if (userCredential.user.emailVerified) {
+            setSignInData({ email: "", password: "" });
+            localStorage.setItem("user", JSON.stringify(userCredential.user));
+            dispatch(activeUser(userCredential.user));
+            setLoadingButtonShow(false);
             toast.success(
               "You've successfully logged in. Enjoy your experience!",
               {
@@ -71,10 +75,6 @@ const SignIn = () => {
                 theme: "dark",
               }
             );
-            setSignInData({ email: "", password: "" });
-            setLoadingButtonShow(false);
-            localStorage.setItem("user", JSON.stringify(userCredential.user))
-            dispatch(activeUser(userCredential.user))
             navigate("/pages/home");
           } else {
             setLoadingButtonShow(false);
@@ -97,9 +97,9 @@ const SignIn = () => {
 
   useEffect(() => {
     if (data?.email) {
-      navigate("/pages/home")
+      navigate("/pages/home");
     }
-  } , [])
+  }, []);
 
   return (
     <section>

@@ -30,7 +30,6 @@ const AccountSetting = () => {
   let navigate = useNavigate();
   let dispatch = useDispatch();
   const storage = getStorage();
-  const storageRef = ref(storage, `profile-${userInfo.uid}`);
   const [profileEditModalOpen, setProfileEditModalOpen] = useState(false);
   const handleProfileEditModalOpen = () => setProfileEditModalOpen(true);
   const handleProfileEditModalClose = () => setProfileEditModalOpen(false);
@@ -38,9 +37,7 @@ const AccountSetting = () => {
   const handleProfileImageModalOpen = () => setProfileImageModalOpen(true);
   const handleProfileImageModalClose = () => setProfileImageModalOpen(false);
   const [loaderShow, setLoaderShow] = useState(false);
-  // react cropper package
   const [image, setImage] = useState("");
-  const [cropData, setCropData] = useState("#");
   const cropperRef = createRef();
 
   const handleProfileImageUploadData = (e) => {
@@ -51,18 +48,17 @@ const AccountSetting = () => {
       files = e.target.files;
     }
     const reader = new FileReader();
+    reader.readAsDataURL(files[0]);
     reader.onload = () => {
       setImage(reader.result);
     };
-    reader.readAsDataURL(files[0]);
   };
 
   // getCropData
   const photoUpload = () => {
     setLoaderShow(true);
-    const profileImage = cropperRef.current?.cropper
-      .getCroppedCanvas()
-      .toDataURL();
+    const profileImage = cropperRef.current?.cropper.getCroppedCanvas().toDataURL();
+    const storageRef = ref(storage, `profile-${userInfo.uid}`);
     uploadString(storageRef, profileImage, "data_url").then((snapshot) => {
       getDownloadURL(storageRef).then((downloadURL) => {
         updateProfile(auth.currentUser, {
@@ -75,7 +71,7 @@ const AccountSetting = () => {
           dispatch(activeUser({ ...userInfo, photoURL: downloadURL }));
           setLoaderShow(false);
           setProfileImageModalOpen(false);
-          setImage("")
+          setImage("");
         });
       });
     });

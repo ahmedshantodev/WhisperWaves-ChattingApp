@@ -28,6 +28,7 @@ const SignIn = () => {
   const navigate = useNavigate();
   const [passwordShow, setPasswordShow] = useState(false);
   const [loadingButtonShow, setLoadingButtonShow] = useState(false);
+  const defaultProfile = "https://firebasestorage.googleapis.com/v0/b/bachal-4607f.appspot.com/o/avatar%2Fistockphoto-1300845620-612x612.jpg?alt=media&token=960187d4-de75-441a-a736-12783c126c69"
   const [signUpData, setSignUpData] = useState({
     name: "",
     email: "",
@@ -75,8 +76,7 @@ const SignIn = () => {
         .then((userCredential) => {
           updateProfile(auth.currentUser, {
             displayName: signUpData.name,
-            photoURL:
-              "https://firebasestorage.googleapis.com/v0/b/bachal-4607f.appspot.com/o/avatar%2Fistockphoto-1300845620-612x612.jpg?alt=media&token=960187d4-de75-441a-a736-12783c126c69",
+            photoURL: defaultProfile,
           })
             .then(() => {
               sendEmailVerification(auth.currentUser).then(() => {
