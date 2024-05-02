@@ -4,10 +4,11 @@ import { toast } from "react-toastify";
 import { getAuth, signOut, updateProfile } from "firebase/auth";
 import {
   getStorage,
-  ref,
+  ref as storageRef,
   uploadString,
   getDownloadURL,
 } from "firebase/storage";
+import { getDatabase, set, ref } from "firebase/database";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { activeUser } from "../../slices/userSlices";
@@ -15,7 +16,6 @@ import "./accountSetting.css";
 import Image from "../../components/layout/Image";
 import { MdModeEdit } from "react-icons/md";
 import coverPhoto from "/public/image/coverPhoto2.jpg";
-import profileImage from "/public/image/WhatsApp Image 2024-01-23 at 2.39.21 PMdsd.jpeg";
 import Modal from "@mui/material/Modal";
 import { IoClose } from "react-icons/io5";
 import { ColorRing } from "react-loader-spinner";
@@ -26,7 +26,9 @@ import "cropperjs/dist/cropper.css";
 
 const AccountSetting = () => {
   const userInfo = useSelector((state) => state.user.information);
+  console.log(" Z8tRnKfN7DdP94vCk8qBaIKw4Ee2 => " + userInfo.displayName)
   const auth = getAuth();
+  const db = getDatabase();
   let navigate = useNavigate();
   let dispatch = useDispatch();
   const storage = getStorage();
@@ -58,22 +60,30 @@ const AccountSetting = () => {
   const photoUpload = () => {
     setLoaderShow(true);
     const profileImage = cropperRef.current?.cropper.getCroppedCanvas().toDataURL();
-    const storageRef = ref(storage, `profile-${userInfo.uid}`);
-    uploadString(storageRef, profileImage, "data_url").then((snapshot) => {
-      getDownloadURL(storageRef).then((downloadURL) => {
-        updateProfile(auth.currentUser, {
-          photoURL: downloadURL,
-        }).then(() => {
-          localStorage.setItem(
-            "user",
-            JSON.stringify({ ...userInfo, photoURL: downloadURL })
-          );
-          dispatch(activeUser({ ...userInfo, photoURL: downloadURL }));
-          setLoaderShow(false);
-          setProfileImageModalOpen(false);
-          setImage("");
-        });
-      });
+    uploadString( storageRef(storage, `profile-${userInfo.uid}`), profileImage, "data_url" ).then((snapshot) => {
+      getDownloadURL(storageRef(storage, `profile-${userInfo.uid}`)).then(
+        (downloadURL) => {
+          updateProfile(auth.currentUser, {
+            photoURL: downloadURL,
+          }).then(() => {
+
+            set(ref(db, "users/" + userInfo.uid), {
+              username: userInfo.displayName,
+              email: userInfo.email,
+              profile_picture: downloadURL,
+            });
+
+            localStorage.setItem(
+              "user",
+              JSON.stringify({ ...userInfo, photoURL: downloadURL })
+            );
+            dispatch(activeUser({ ...userInfo, photoURL: downloadURL }));
+            setLoaderShow(false);
+            setProfileImageModalOpen(false);
+            setImage("");
+          });
+        }
+      );
     });
   };
 
