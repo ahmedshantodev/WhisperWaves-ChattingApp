@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useId, useRef, useState } from "react";
 import "./signUp.css";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
@@ -9,7 +9,6 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebook, FaEye, FaEyeSlash } from "react-icons/fa";
 import SignButton from "../../components/layout/SignInButton/SignButton";
 import { Link } from "react-router-dom";
-import Alert from "@mui/material/Alert";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -18,17 +17,23 @@ import {
   signInWithPopup,
   updateProfile,
 } from "firebase/auth";
+import { getDatabase, ref, set } from "firebase/database";
 import { toast } from "react-toastify";
 import { ColorRing } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { activeUser } from "../../slices/userSlices";
 
 const SignIn = () => {
   const auth = getAuth();
+  const db = getDatabase();
   const provider = new GoogleAuthProvider();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [passwordShow, setPasswordShow] = useState(false);
   const [loadingButtonShow, setLoadingButtonShow] = useState(false);
-  const defaultProfile = "https://firebasestorage.googleapis.com/v0/b/bachal-4607f.appspot.com/o/avatar%2Fistockphoto-1300845620-612x612.jpg?alt=media&token=960187d4-de75-441a-a736-12783c126c69"
+  const defaultProfile =
+    "https://firebasestorage.googleapis.com/v0/b/whisper-waves.appspot.com/o/default%20profile%2FWhatsApp%20Image%202024-01-23%20at%202.39.21%20PMdsd.jpg?alt=media&token=ab51075d-67a3-4435-958d-b7f38191f355";
   const [signUpData, setSignUpData] = useState({
     name: "",
     email: "",
@@ -79,6 +84,15 @@ const SignIn = () => {
             photoURL: defaultProfile,
           })
             .then(() => {
+              localStorage.setItem("user", JSON.stringify(userCredential.user));
+              dispatch(activeUser(userCredential.user));
+              set(ref(db, "users/" + userCredential.user.uid), {
+                username: signUpData.name,
+                email: signUpData.email,
+                profile_picture: userCredential.user.photoURL,
+              });
+            })
+            .then(() => {
               sendEmailVerification(auth.currentUser).then(() => {
                 toast.success(
                   "Registration Successfull, Please check your email for verification",
@@ -90,12 +104,11 @@ const SignIn = () => {
                 );
                 setLoadingButtonShow(false);
                 setSignUpData({ name: "", email: "", password: "" });
-                navigate("/sign-in");
+                navigate("/pages/home");
               });
             })
             .catch((error) => {
               setLoadingButtonShow(false);
-              console.log(error)
             });
         })
         .catch((error) => {
@@ -115,6 +128,13 @@ const SignIn = () => {
   const handleGoogleSignUp = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
+        set(ref(db, "users/" + result.user.uid), {
+          username: result.user.displayName,
+          email: result.user.email,
+          profile_picture: result.user.photoURL,
+        });
+        localStorage.setItem("user", JSON.stringify(result.user));
+        dispatch(activeUser(result.user));
         toast.success("Registration Successfull", {
           position: "bottom-center",
           autoClose: 3000,
@@ -125,11 +145,7 @@ const SignIn = () => {
       .catch((error) => {});
   };
 
-  const handleFaceBookSignUp = () => {
-    console.log("facebook");
-  };
-
-  const inputRef = useRef(null);
+  const handleFaceBookSignUp = () => {};
 
   return (
     <section>

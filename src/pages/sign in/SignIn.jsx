@@ -62,7 +62,7 @@ const SignIn = () => {
       setLoadingButtonShow(true);
       signInWithEmailAndPassword(auth, signInData.email, signInData.password)
         .then((userCredential) => {
-          if (userCredential.user.emailVerified) {
+          // if (userCredential.user.emailVerified) {
             setSignInData({ email: "", password: "" });
             localStorage.setItem("user", JSON.stringify(userCredential.user));
             dispatch(activeUser(userCredential.user));
@@ -76,14 +76,14 @@ const SignIn = () => {
               }
             );
             navigate("/pages/home");
-          } else {
-            setLoadingButtonShow(false);
-            toast.error("Please Varify Your Email First", {
-              position: "bottom-center",
-              autoClose: 3000,
-              theme: "dark",
-            });
-          }
+          // } else {
+          //   setLoadingButtonShow(false);
+          //   toast.error("Please Varify Your Email First", {
+          //     position: "bottom-center",
+          //     autoClose: 3000,
+          //     theme: "dark",
+          //   });
+          // }
         })
         .catch((error) => {
           setLoadingButtonShow(false);
