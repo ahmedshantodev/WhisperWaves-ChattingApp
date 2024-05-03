@@ -10,14 +10,14 @@ const Home = () => {
   return (
     <Box sx={{ p: "48px 50px", height: "100dvh", overflowY: "scroll" }}>
       <Grid container>
-        <Grid item xs={4} p={"0 40px 0 0"}>
+        <Grid item xs={4} p={"0 30px 0 0"}>
           <GroupList />
           <FriendRequst margin={"50px 0 0 0"}/>
         </Grid>
-        <Grid item xs={4} p={"0 40px 0 0"}>
+        <Grid item xs={4} p={"0 30px 0 0"}>
           <Friends />
         </Grid>
-        <Grid item xs={4} p={"0 40px 0 0"}>
+        <Grid item xs={4} p={"0 30px 0 0"}>
           <People />
         </Grid>
       </Grid>

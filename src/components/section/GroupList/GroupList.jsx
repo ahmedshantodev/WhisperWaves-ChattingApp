@@ -37,9 +37,13 @@ const GroupList = () => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            pb: "8px",
-            mb: "8px",
-            borderBottom: "1px solid #dedede"
+            py: "8px",
+              px: "5px",
+              borderBottom: "1px solid #dedede",
+              ":hover": {
+                bgcolor: "#dedede",
+              },
+              cursor: "pointer",
           }}
           className={"group-list-item"}
         >
@@ -64,7 +68,7 @@ const GroupList = () => {
               <Typography
                 sx={{ fontSize: "14px", color: "secondaryText.main" }}
               >
-                redux complate.....
+                random messege.....
               </Typography>
             </Box>
           </Box>
@@ -75,10 +79,15 @@ const GroupList = () => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            pb: "8px",
-            mb: "8px",
-            borderBottom: "1px solid #dedede"
+            py: "8px",
+              px: "5px",
+              borderBottom: "1px solid #dedede",
+              ":hover": {
+                bgcolor: "#dedede",
+              },
+              cursor: "pointer",
           }}
+          className={"group-list-item"}
         >
           <Box
             sx={{
@@ -89,7 +98,7 @@ const GroupList = () => {
             <Image
               imageLink={"/public/image/Ellipse 1.png"}
               altText={"userProfile"}
-              className={"profile-image"}
+              className={"group-profile-image"}
             />
             <Box sx={{ ml: "16px" }}>
               <Typography
@@ -101,7 +110,7 @@ const GroupList = () => {
               <Typography
                 sx={{ fontSize: "14px", color: "secondaryText.main" }}
               >
-                redux complate.....
+                random messege.....
               </Typography>
             </Box>
           </Box>
@@ -112,10 +121,15 @@ const GroupList = () => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            pb: "8px",
-            mb: "8px",
-            borderBottom: "1px solid #dedede"
+            py: "8px",
+              px: "5px",
+              borderBottom: "1px solid #dedede",
+              ":hover": {
+                bgcolor: "#dedede",
+              },
+              cursor: "pointer",
           }}
+          className={"group-list-item"}
         >
           <Box
             sx={{
@@ -126,7 +140,7 @@ const GroupList = () => {
             <Image
               imageLink={"/public/image/Ellipse 1.png"}
               altText={"userProfile"}
-              className={"profile-image"}
+              className={"group-profile-image"}
             />
             <Box sx={{ ml: "16px" }}>
               <Typography
@@ -138,7 +152,7 @@ const GroupList = () => {
               <Typography
                 sx={{ fontSize: "14px", color: "secondaryText.main" }}
               >
-                redux complate.....
+                random messege.....
               </Typography>
             </Box>
           </Box>
@@ -149,10 +163,15 @@ const GroupList = () => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            pb: "8px",
-            mb: "8px",
-            borderBottom: "1px solid #dedede"
+            py: "8px",
+              px: "5px",
+              borderBottom: "1px solid #dedede",
+              ":hover": {
+                bgcolor: "#dedede",
+              },
+              cursor: "pointer",
           }}
+          className={"group-list-item"}
         >
           <Box
             sx={{
@@ -163,7 +182,7 @@ const GroupList = () => {
             <Image
               imageLink={"/public/image/Ellipse 1.png"}
               altText={"userProfile"}
-              className={"profile-image"}
+              className={"group-profile-image"}
             />
             <Box sx={{ ml: "16px" }}>
               <Typography
@@ -175,7 +194,7 @@ const GroupList = () => {
               <Typography
                 sx={{ fontSize: "14px", color: "secondaryText.main" }}
               >
-                redux complate.....
+                random messege.....
               </Typography>
             </Box>
           </Box>
@@ -186,10 +205,15 @@ const GroupList = () => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            pb: "8px",
-            mb: "8px",
-            borderBottom: "1px solid #dedede"
+            py: "8px",
+              px: "5px",
+              borderBottom: "1px solid #dedede",
+              ":hover": {
+                bgcolor: "#dedede",
+              },
+              cursor: "pointer",
           }}
+          className={"group-list-item"}
         >
           <Box
             sx={{
@@ -200,7 +224,7 @@ const GroupList = () => {
             <Image
               imageLink={"/public/image/Ellipse 1.png"}
               altText={"userProfile"}
-              className={"profile-image"}
+              className={"group-profile-image"}
             />
             <Box sx={{ ml: "16px" }}>
               <Typography
@@ -212,7 +236,7 @@ const GroupList = () => {
               <Typography
                 sx={{ fontSize: "14px", color: "secondaryText.main" }}
               >
-                redux complate.....
+                random messege.....
               </Typography>
             </Box>
           </Box>
@@ -223,10 +247,15 @@ const GroupList = () => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            pb: "8px",
-            mb: "8px",
-            borderBottom: "1px solid #dedede"
+            py: "8px",
+              px: "5px",
+              borderBottom: "1px solid #dedede",
+              ":hover": {
+                bgcolor: "#dedede",
+              },
+              cursor: "pointer",
           }}
+          className={"group-list-item"}
         >
           <Box
             sx={{
@@ -237,7 +266,7 @@ const GroupList = () => {
             <Image
               imageLink={"/public/image/Ellipse 1.png"}
               altText={"userProfile"}
-              className={"profile-image"}
+              className={"group-profile-image"}
             />
             <Box sx={{ ml: "16px" }}>
               <Typography
@@ -249,7 +278,7 @@ const GroupList = () => {
               <Typography
                 sx={{ fontSize: "14px", color: "secondaryText.main" }}
               >
-                redux complate.....
+                random messege.....
               </Typography>
             </Box>
           </Box>
@@ -260,10 +289,15 @@ const GroupList = () => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            pb: "8px",
-            mb: "8px",
-            borderBottom: "1px solid #dedede"
+            py: "8px",
+              px: "5px",
+              borderBottom: "1px solid #dedede",
+              ":hover": {
+                bgcolor: "#dedede",
+              },
+              cursor: "pointer",
           }}
+          className={"group-list-item"}
         >
           <Box
             sx={{
@@ -274,7 +308,7 @@ const GroupList = () => {
             <Image
               imageLink={"/public/image/Ellipse 1.png"}
               altText={"userProfile"}
-              className={"profile-image"}
+              className={"group-profile-image"}
             />
             <Box sx={{ ml: "16px" }}>
               <Typography
@@ -286,7 +320,7 @@ const GroupList = () => {
               <Typography
                 sx={{ fontSize: "14px", color: "secondaryText.main" }}
               >
-                redux complate.....
+                random messege.....
               </Typography>
             </Box>
           </Box>
@@ -297,10 +331,15 @@ const GroupList = () => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            pb: "8px",
-            mb: "8px",
-            borderBottom: "1px solid #dedede"
+            py: "8px",
+              px: "5px",
+              borderBottom: "1px solid #dedede",
+              ":hover": {
+                bgcolor: "#dedede",
+              },
+              cursor: "pointer",
           }}
+          className={"group-list-item"}
         >
           <Box
             sx={{
@@ -311,7 +350,7 @@ const GroupList = () => {
             <Image
               imageLink={"/public/image/Ellipse 1.png"}
               altText={"userProfile"}
-              className={"profile-image"}
+              className={"group-profile-image"}
             />
             <Box sx={{ ml: "16px" }}>
               <Typography
@@ -323,7 +362,7 @@ const GroupList = () => {
               <Typography
                 sx={{ fontSize: "14px", color: "secondaryText.main" }}
               >
-                redux complate.....
+                random messege.....
               </Typography>
             </Box>
           </Box>
@@ -334,9 +373,15 @@ const GroupList = () => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            pb: "8px",
-            mb: "8px",
+            py: "8px",
+              px: "5px",
+              borderBottom: "1px solid #dedede",
+              ":hover": {
+                bgcolor: "#dedede",
+              },
+              cursor: "pointer",
           }}
+          className={"group-list-item"}
         >
           <Box
             sx={{
@@ -347,7 +392,7 @@ const GroupList = () => {
             <Image
               imageLink={"/public/image/Ellipse 1.png"}
               altText={"userProfile"}
-              className={"profile-image"}
+              className={"group-profile-image"}
             />
             <Box sx={{ ml: "16px" }}>
               <Typography
@@ -359,7 +404,7 @@ const GroupList = () => {
               <Typography
                 sx={{ fontSize: "14px", color: "secondaryText.main" }}
               >
-                redux complate.....
+                random messege.....
               </Typography>
             </Box>
           </Box>

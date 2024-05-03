@@ -3,16 +3,20 @@ import "./friendRequst.css";
 import { Box, Button, Typography } from "@mui/material";
 import { HiDotsVertical } from "react-icons/hi";
 import Image from "../../layout/Image";
-import { getDatabase, onValue, ref, remove } from "firebase/database";
+import {
+  getDatabase,
+  onValue,
+  push,
+  ref,
+  remove,
+  set,
+} from "firebase/database";
 import { useSelector } from "react-redux";
 
 const FriendRequst = ({ margin }) => {
   const db = getDatabase();
   const [friendRequstList, setFriendRequstList] = useState([]);
   const userInfo = useSelector((state) => state.user.information);
-
-
-console.log(friendRequstList)
   useEffect(() => {
     const friendRequstRef = ref(db, "friendrequst");
     onValue(friendRequstRef, (snapshot) => {
@@ -20,20 +24,26 @@ console.log(friendRequstList)
       snapshot.forEach((item) => {
         if (userInfo.uid == item.val().whoreciveid) {
           friendRequstListArray.push({
-            // bhujte hobe
             ...item.val(),
-            id: item.key
+            id: item.key,
           });
         }
       });
-
       setFriendRequstList(friendRequstListArray);
     });
   }, []);
 
-  const handleFriendRequstReject = (item) => { 
-    remove(ref(db , "friendrequst/" + item.id ))
-  }
+  const handleFriendRequstAccept = (item) => {
+    set(push(ref(db, "friends/")), {
+      ...item,
+    }).then(() => {
+      remove(ref(db, "friendrequst/" + item.id));
+    });
+  };
+
+  const handleFriendRequstReject = (item) => {
+    remove(ref(db, "friendrequst/" + item.id));
+  };
 
   return (
     <Box
@@ -67,9 +77,13 @@ console.log(friendRequstList)
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
-              pb: "8px",
-              mb: "8px",
+              py: "8px",
+              px: "5px",
               borderBottom: "1px solid #dedede",
+              ":hover": {
+                bgcolor: "#dedede",
+              },
+              cursor: "pointer",
             }}
             className={"group-list-item"}
           >
@@ -98,10 +112,19 @@ console.log(friendRequstList)
               </Box>
             </Box>
             <Box>
-              <Button variant="contained" sx={{ mr: "10px" }}>
+              <Button
+                onClick={() => handleFriendRequstAccept(item)}
+                variant="contained"
+                sx={{ mr: "5px" }}
+              >
                 Confirm
               </Button>
-              <Button onClick={() => handleFriendRequstReject(item)} variant="contained">Reject</Button>
+              <Button
+                onClick={() => handleFriendRequstReject(item)}
+                variant="contained"
+              >
+                Reject
+              </Button>
             </Box>
           </Box>
         ))}

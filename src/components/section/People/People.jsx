@@ -10,8 +10,9 @@ import { useSelector } from "react-redux";
 
 const People = () => {
   const db = getDatabase();
-  const [userList, setuserList] = useState([]);
   const userInfo = useSelector((state) => state.user.information);
+  const [userList, setuserList] = useState([]);
+  const [friendRequst, setFriendRequst] = useState([]);
 
   useEffect(() => {
     const userRef = ref(db, "users");
@@ -31,14 +32,26 @@ const People = () => {
     });
   }, []);
 
+  useEffect(() => {
+    const userRef = ref(db, "friendrequst");
+    onValue(userRef, (snapshot) => {
+      let friendRequstArray = [];
+      snapshot.forEach((item) => {
+        friendRequstArray.push(item.val().whoreciveid + item.val().whosendid);
+      });
+      setFriendRequst(friendRequstArray);
+    });
+  }, []);
+
   const handleFriendRequst = (item) => {
-    set(push(ref(db , "friendrequst/")) , {
+    set(push(ref(db, "friendrequst/")), {
       whosendid: userInfo.uid,
       whosendname: userInfo.displayName,
       whosendprofile: userInfo.photoURL,
       whoreciveid: item.userid,
-      whorecivename: item.username
-    })
+      whorecivename: item.username,
+      whoreciveprofile: item.profilePicture,
+    });
   };
 
   return (
@@ -73,9 +86,13 @@ const People = () => {
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
-              pb: "8px",
-              mb: "8px",
+              py: "8px",
+              px: "5px",
               borderBottom: "1px solid #dedede",
+              ":hover": {
+                bgcolor: "#dedede",
+              },
+              cursor: "pointer",
             }}
             className={"group-list-item"}
           >
@@ -99,13 +116,20 @@ const People = () => {
                 </Typography>
               </Box>
             </Box>
-            <Button
-              onClick={() => handleFriendRequst(item)}
-              variant="contained"
-              sx={{ p: "10px 0" }}
-            >
-              <IoPersonAddSharp />
-            </Button>
+            {friendRequst.includes(item.userid + userInfo.uid) ||
+            friendRequst.includes(userInfo.uid + item.userid) ? (
+              <Button disabled variant="contained" sx={{ py: "10px" }}>
+                pending
+              </Button>
+            ) : (
+              <Button
+                onClick={() => handleFriendRequst(item)}
+                variant="contained"
+                sx={{ p: "10px 0" }}
+              >
+                <IoPersonAddSharp />
+              </Button>
+            )}
           </Box>
         ))}
       </Box>

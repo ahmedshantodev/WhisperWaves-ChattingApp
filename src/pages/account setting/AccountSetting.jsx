@@ -13,25 +13,22 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { activeUser } from "../../slices/userSlices";
 import "./accountSetting.css";
-import Image from "../../components/layout/Image";
 import { MdModeEdit } from "react-icons/md";
+import Image from "../../components/layout/Image";
 import coverPhoto from "/public/image/coverPhoto2.jpg";
 import Modal from "@mui/material/Modal";
 import { IoClose } from "react-icons/io5";
 import { ColorRing } from "react-loader-spinner";
-
-// react cropper package
 import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
 
 const AccountSetting = () => {
   const userInfo = useSelector((state) => state.user.information);
-  console.log(" Z8tRnKfN7DdP94vCk8qBaIKw4Ee2 => " + userInfo.displayName)
   const auth = getAuth();
   const db = getDatabase();
-  let navigate = useNavigate();
-  let dispatch = useDispatch();
   const storage = getStorage();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [profileEditModalOpen, setProfileEditModalOpen] = useState(false);
   const handleProfileEditModalOpen = () => setProfileEditModalOpen(true);
   const handleProfileEditModalClose = () => setProfileEditModalOpen(false);
@@ -66,13 +63,11 @@ const AccountSetting = () => {
           updateProfile(auth.currentUser, {
             photoURL: downloadURL,
           }).then(() => {
-
             set(ref(db, "users/" + userInfo.uid), {
               username: userInfo.displayName,
               email: userInfo.email,
               profile_picture: downloadURL,
             });
-
             localStorage.setItem(
               "user",
               JSON.stringify({ ...userInfo, photoURL: downloadURL })
