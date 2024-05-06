@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import "./friendRequst.css";
 import { Box, Button, Typography } from "@mui/material";
-import { HiDotsVertical } from "react-icons/hi";
+import { HiDotsVertical, HiDotsHorizontal } from "react-icons/hi";
+import SearchBox from "../../layout/SearchBox/SearchBox";
 import Image from "../../layout/Image";
+import React, { useEffect, useState } from "react";
 import {
   getDatabase,
   onValue,
@@ -13,42 +13,35 @@ import {
 } from "firebase/database";
 import { useSelector } from "react-redux";
 
-const FriendRequst = ({ margin }) => {
+const BlockList = ({ margin }) => {
   const db = getDatabase();
-  const [friendRequstList, setFriendRequstList] = useState([]);
   const activeUserData = useSelector((state) => state.user.information);
+  const [blockList, setBlockList] = useState([]);
 
   useEffect(() => {
-    const friendRequstRef = ref(db, "friendrequst");
-    onValue(friendRequstRef, (snapshot) => {
-      let friendRequstListArray = [];
+    let blockRef = ref(db, "block");
+    onValue(ref(db, "block"), (snapshot) => {
+      let blockListArray = [];
       snapshot.forEach((item) => {
-        if (activeUserData.uid == item.val().reciverid) {
-          friendRequstListArray.push({
-            ...item.val(),
-            id: item.key,
-          });
+        if (activeUserData.uid == item.val().blockbyid) {
+          blockListArray.push({ ...item.val(), id: item.key });
         }
       });
-      setFriendRequstList(friendRequstListArray);
+      setBlockList(blockListArray);
     });
   }, []);
 
-  const handleFriendRequstAccept = (item) => {
+  const handleUnblock = (item) => {
     set(push(ref(db, "friends/")), {
-      reciverid: item.reciverid,
-      recivername: item.recivername,
-      reciverprofile: item.reciverprofile,
-      senderid: item.senderid,
-      sendername: item.sendername,
-      senderprofile: item.senderprofile,
+      reciverid: item.blockbyid,
+      recivername: item.blockbyname,
+      reciverprofile: item.blockbyprofile,
+      senderid: item.blockid,
+      sendername: item.blockname,
+      senderprofile: item.blockprofile,
     }).then(() => {
-      remove(ref(db, "friendrequst/" + item.id));
+      remove(ref(db, "block/" + item.id));
     });
-  };
-
-  const handleFriendRequstReject = (item) => {
-    remove(ref(db, "friendrequst/" + item.id));
   };
 
   return (
@@ -71,13 +64,20 @@ const FriendRequst = ({ margin }) => {
           }}
         >
           <Typography sx={{ fontSize: "24px", fontWeight: "semibold" }}>
-            Friend Request
+            Block List
           </Typography>
           <HiDotsVertical className="three-dots" />
         </Box>
+        <SearchBox margin={"16px 0 0 0"} />
       </Box>
-      <Box sx={{ height: "86%", overflowY: "auto", p: "0 10px" }}>
-        {friendRequstList.map((item, index) => (
+      <Box
+        sx={{
+          height: "75%",
+          overflowY: "auto",
+          p: "0 10px",
+        }}
+      >
+        {blockList.map((item, index) => (
           <Box
             key={index}
             sx={{
@@ -101,40 +101,27 @@ const FriendRequst = ({ margin }) => {
               }}
             >
               <Image
-                imageLink={item.senderprofile}
+                imageLink={item.blockprofile}
                 altText={"userProfile"}
                 className={"group-profile-image"}
               />
               <Box sx={{ ml: "16px" }}>
                 <Typography
                   variant="h5"
-                  sx={{
-                    width: "161px",
-                    fontSize: "18px",
-                    fontWeight: "semiBold",
-                  }}
+                  sx={{ fontSize: "18px", fontWeight: "semiBold" }}
                 >
-                  {item.sendername}
+                  {item.blockname}
                 </Typography>
               </Box>
             </Box>
-            <Box>
-              <Button
-                onClick={() => handleFriendRequstAccept(item)}
-                variant="contained"
-                sx={{ mr: "5px" }}
-                color="success"
-              >
-                Accept
-              </Button>
-              <Button
-                onClick={() => handleFriendRequstReject(item)}
-                variant="contained"
-                color="error"
-              >
-                Reject
-              </Button>
-            </Box>
+            <Button
+              onClick={() => handleUnblock(item)}
+              color="error"
+              variant="contained"
+              sx={{ width: "110px" }}
+            >
+              unblock
+            </Button>
           </Box>
         ))}
       </Box>
@@ -142,4 +129,4 @@ const FriendRequst = ({ margin }) => {
   );
 };
 
-export default FriendRequst;
+export default BlockList;

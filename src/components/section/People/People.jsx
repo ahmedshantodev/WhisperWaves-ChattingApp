@@ -7,19 +7,25 @@ import Image from "../../layout/Image";
 import { IoPersonAddSharp } from "react-icons/io5";
 import { getDatabase, ref, onValue, set, push } from "firebase/database";
 import { useSelector } from "react-redux";
+import { FaUserCheck, FaUserPlus, FaUserMinus } from "react-icons/fa6";
 
 const People = () => {
   const db = getDatabase();
-  const userInfo = useSelector((state) => state.user.information);
+  const activeUserData = useSelector((state) => state.user.information);
   const [userList, setuserList] = useState([]);
-  const [friendRequst, setFriendRequst] = useState([]);
+  const [friendRequstPendingButton, setFriendRequstPendingButton] = useState(
+    []
+  );
+  const [friendsButton, setFriendsButton] = useState([]);
+  const [blockButton, setBlockButton] = useState([]);
 
+  // user list
   useEffect(() => {
     const userRef = ref(db, "users");
     onValue(userRef, (snapshot) => {
       let userArray = [];
       snapshot.forEach((item) => {
-        if (item.key != userInfo.uid) {
+        if (item.key != activeUserData.uid) {
           userArray.push({
             userid: item.key,
             username: item.val().username,
@@ -32,25 +38,50 @@ const People = () => {
     });
   }, []);
 
+  // friend requst
   useEffect(() => {
-    const userRef = ref(db, "friendrequst");
-    onValue(userRef, (snapshot) => {
+    const friendrequstRef = ref(db, "friendrequst");
+    onValue(friendrequstRef, (snapshot) => {
       let friendRequstArray = [];
       snapshot.forEach((item) => {
-        friendRequstArray.push(item.val().whoreciveid + item.val().whosendid);
+        friendRequstArray.push(item.val().reciverid + item.val().senderid);
       });
-      setFriendRequst(friendRequstArray);
+      setFriendRequstPendingButton(friendRequstArray);
+    });
+  }, []);
+
+  // frineds
+  useEffect(() => {
+    const friendsRef = ref(db, "friends");
+    onValue(friendsRef, (snapshot) => {
+      let friendsArray = [];
+      snapshot.forEach((item) => {
+        friendsArray.push(item.val().reciverid + item.val().senderid);
+      });
+      setFriendsButton(friendsArray);
+    });
+  }, []);
+
+  // block
+  useEffect(() => {
+    const blockRef = ref(db, "block");
+    onValue(blockRef, (snapshot) => {
+      let blockArray = [];
+      snapshot.forEach((item) => {
+        blockArray.push(item.val().blockid + item.val().blockbyid);
+      });
+      setBlockButton(blockArray);
     });
   }, []);
 
   const handleFriendRequst = (item) => {
     set(push(ref(db, "friendrequst/")), {
-      whosendid: userInfo.uid,
-      whosendname: userInfo.displayName,
-      whosendprofile: userInfo.photoURL,
-      whoreciveid: item.userid,
-      whorecivename: item.username,
-      whoreciveprofile: item.profilePicture,
+      senderid: activeUserData.uid,
+      sendername: activeUserData.displayName,
+      senderprofile: activeUserData.photoURL,
+      reciverid: item.userid,
+      recivername: item.username,
+      reciverprofile: item.profilePicture,
     });
   };
 
@@ -80,8 +111,9 @@ const People = () => {
         <SearchBox margin={"16px 0 0 0"} />
       </Box>
       <Box sx={{ height: "75%", overflowY: "auto", p: "0 10px" }}>
-        {userList.map((item) => (
+        {userList.map((item, index) => (
           <Box
+            key={index}
             sx={{
               display: "flex",
               justifyContent: "space-between",
@@ -116,18 +148,65 @@ const People = () => {
                 </Typography>
               </Box>
             </Box>
-            {friendRequst.includes(item.userid + userInfo.uid) ||
-            friendRequst.includes(userInfo.uid + item.userid) ? (
-              <Button disabled variant="contained" sx={{ py: "10px" }}>
-                pending
+            {friendRequstPendingButton.includes(
+              item.userid + activeUserData.uid
+            ) ||
+            friendRequstPendingButton.includes(
+              activeUserData.uid + item.userid
+            ) ? (
+              <Button
+                variant="contained"
+                disabled
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "5px",
+                  width: "110px",
+                }}
+              >
+                {/* <FaUserMinus /> Cancel */} pending
+              </Button>
+            ) : friendsButton.includes(activeUserData.uid + item.userid) ||
+              friendsButton.includes(item.userid + activeUserData.uid) ? (
+              <Button
+                // disabled
+                color="success"
+                variant="contained"
+                sx={{
+                  width: "110px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "5px",
+                }}
+              >
+                <FaUserCheck /> Friends
+              </Button>
+            ) : blockButton.includes(activeUserData.uid + item.userid) ||
+              blockButton.includes(item.userid + activeUserData.uid) ? (
+              <Button
+                color="error"
+                variant="contained"
+                sx={{
+                  width: "110px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "5px",
+                }}
+              >
+                block
               </Button>
             ) : (
               <Button
                 onClick={() => handleFriendRequst(item)}
                 variant="contained"
-                sx={{ p: "10px 0" }}
+                sx={{
+                  width: "110px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "5px",
+                }}
               >
-                <IoPersonAddSharp />
+                <FaUserPlus /> Send
               </Button>
             )}
           </Box>

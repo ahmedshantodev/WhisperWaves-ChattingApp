@@ -1,22 +1,33 @@
 import React, { useEffect, useState } from "react";
 import "./friends.css";
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { HiDotsVertical, HiDotsHorizontal } from "react-icons/hi";
 import SearchBox from "../../layout/SearchBox/SearchBox";
 import Image from "../../layout/Image";
-import { getDatabase, onValue, ref } from "firebase/database";
+import {
+  getDatabase,
+  onValue,
+  push,
+  ref,
+  remove,
+  set,
+} from "firebase/database";
 import { useSelector } from "react-redux";
 
 const Friends = () => {
   const db = getDatabase();
   const [friendsList, setFriendsList] = useState([]);
   const activeUserData = useSelector((state) => state.user.information);
+  // const [itemMenuOpen, setItemMenuOpen] = useState(false);
 
   useEffect(() => {
     onValue(ref(db, "friends"), (snapshot) => {
       let friendsArray = [];
       snapshot.forEach((item) => {
-        if ( activeUserData.uid == item.val().whosendid || activeUserData.uid == item.val().whoreciveid ) {
+        if (
+          activeUserData.uid == item.val().senderid ||
+          activeUserData.uid == item.val().reciverid
+        ) {
           friendsArray.push({
             ...item.val(),
             id: item.key,
@@ -26,6 +37,32 @@ const Friends = () => {
       setFriendsList(friendsArray);
     });
   }, []);
+
+  const handleFriendBlock = (item) => {
+    if (activeUserData.uid == item.senderid) {
+      set(push(ref(db, "block/")), {
+        blockbyname: activeUserData.displayName,
+        blockbyid: activeUserData.uid,
+        blockbyprofile: activeUserData.photoURL,
+        blockname: item.recivername,
+        blockid: item.reciverid,
+        blockprofile: item.reciverprofile,
+      }).then(() => {
+        remove(ref(db, "friends/" + item.id));
+      });
+    } else if (activeUserData.uid == item.reciverid) {
+      set(push(ref(db, "block/")), {
+        blockbyname: activeUserData.displayName,
+        blockbyid: activeUserData.uid,
+        blockbyprofile: activeUserData.photoURL,
+        blockname: item.sendername,
+        blockid: item.senderid,
+        blockprofile: item.senderprofile,
+      }).then(() => {
+        remove(ref(db, "friends/" + item.id));
+      });
+    }
+  };
 
   return (
     <Box
@@ -55,12 +92,12 @@ const Friends = () => {
       <Box
         sx={{
           height: "75%",
-          overflowY: "scroll",
+          overflowY: "auto",
           p: "0 10px",
         }}
       >
-        {friendsList.map((item) => (
-          <Box
+        {friendsList.map((item , index) => (
+          <Box key={index}
             sx={{
               display: "flex",
               justifyContent: "space-between",
@@ -83,9 +120,9 @@ const Friends = () => {
             >
               <Image
                 imageLink={
-                  activeUserData.uid == item.whoreciveid
-                    ? item.whosendprofile
-                    : item.whoreciveprofile
+                  activeUserData.uid == item.reciverid
+                    ? item.senderprofile
+                    : item.reciverprofile
                 }
                 altText={"userProfile"}
                 className={"group-profile-image"}
@@ -95,9 +132,9 @@ const Friends = () => {
                   variant="h5"
                   sx={{ fontSize: "18px", fontWeight: "semiBold" }}
                 >
-                  {activeUserData.uid == item.whoreciveid
-                    ? item.whosendname
-                    : item.whorecivename}
+                  {activeUserData.uid == item.reciverid
+                    ? item.sendername
+                    : item.recivername}
                 </Typography>
                 <Typography
                   sx={{ fontSize: "14px", color: "secondaryText.main" }}
@@ -106,7 +143,38 @@ const Friends = () => {
                 </Typography>
               </Box>
             </Box>
-            <HiDotsHorizontal className="friends-list-item-threedots" />
+            <Button
+              color="error"
+              variant="contained"
+              onClick={() => handleFriendBlock(item)}
+              sx={{
+                width: "110px",
+              }}
+            >
+              block
+            </Button>
+            {/* <Box sx={{ position: "relative" }}>
+              <HiDotsVertical
+                onClick={() => setItemMenuOpen(!itemMenuOpen)}
+                className="friends-list-item-threedots"
+              />
+              {itemMenuOpen && (
+                <Box
+                  sx={{
+                    p: "5px",
+                    bgcolor: "white",
+                    boxShadow: 5,
+                    position: "absolute",
+                    top: "75%",
+                    left: "-90%",
+                    zIndex: "9",
+                  }}
+                >
+                  <Button>block</Button>
+                  <Button>block</Button>
+                </Box>
+              )}
+            </Box> */}
           </Box>
         ))}
       </Box>

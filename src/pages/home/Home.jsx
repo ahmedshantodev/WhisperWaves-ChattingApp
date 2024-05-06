@@ -5,6 +5,7 @@ import GroupList from "../../components/section/GroupList/GroupList";
 import Friends from "../../components/section/Friends.jsx/Friends";
 import FriendRequst from "../../components/section/FriendRequst/FriendRequst";
 import People from "../../components/section/People/People";
+import BlockList from "../../components/section/BlockList/BlockList";
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
         </Grid>
         <Grid item xs={4} p={"0 30px 0 0"}>
           <Friends />
+          <BlockList margin={"50px 0 0 0"}/>
         </Grid>
         <Grid item xs={4} p={"0 30px 0 0"}>
           <People />

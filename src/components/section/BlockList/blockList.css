@@ -1,0 +1,30 @@
+.three-dots {
+    cursor: pointer;
+    padding: 3px 5px;
+    font-size: 28px;
+    border-radius: 100%;
+  }
+  .three-dots:hover {
+    background-color: #dedede;
+  }
+  .group-profile-image {
+    width: 48px;
+    height: 48px;
+    border-radius: 100%;
+  }
+  .group-list-show-box {
+    overflow-y: scroll;
+  }
+  .group-list-item:nth-last-child(1) {
+    border-bottom: none;
+  }
+  .friends-list-item-threedots {
+    cursor: pointer;
+    padding: 3px 5px;
+    font-size: 28px;
+    border-radius: 100%;
+    transition: all 0.1s ease-out;
+  }
+  .friends-list-item-threedots:hover {
+    background-color: white;
+  }
