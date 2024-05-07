@@ -11,10 +11,10 @@ import SignIn from "./pages/sign in/SignIn";
 import ForgetPassword from "./pages/forget password/ForgetPassword";
 import Pages from "./pages/Pages";
 import Home from "./pages/home/Home";
-import Message from "./pages/message/Message";
 import Chat from "./pages/chat/Chat";
 import Group from "./pages/group/Group";
 import Friends from "./pages/friends/Friends";
+import Feeds from "./pages/feeds/Feeds";
 import AccountSetting from "./pages/account setting/AccountSetting";
 
 function App() {
@@ -26,10 +26,10 @@ function App() {
         <Route path="/forget-password" element={<ForgetPassword />} />
         <Route path="/pages" element={<Pages />}>
           <Route path="home" element={<Home />} />
-          <Route path="message" element={<Message />} />
           <Route path="chat" element={<Chat />} />
           <Route path="group" element={<Group />} />
           <Route path="friends" element={<Friends />} />
+          <Route path="feeds" element={<Feeds />} />
           <Route path="account-setting" element={<AccountSetting />} />
         </Route>
       </Route>

@@ -12,6 +12,7 @@ import {
   set,
 } from "firebase/database";
 import { useSelector } from "react-redux";
+import "./blockList.css"
 
 const BlockList = ({ margin }) => {
   const db = getDatabase();

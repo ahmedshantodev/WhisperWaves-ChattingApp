@@ -4,6 +4,7 @@ import "./Menu.css";
 import { TiHome } from "react-icons/ti";
 import { HiOutlineChatBubbleLeft } from "react-icons/hi2";
 import { HiOutlineUser, HiOutlineUsers } from "react-icons/hi2";
+import { IoNewspaperOutline } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 import List from "../../layout/List";
 import ListItem from "../../layout/ListItem";
@@ -24,6 +25,7 @@ const Menu = () => {
               home
             </NavLink>
           </ListItem>
+          
           <ListItem>
             <NavLink
               to="/pages/chat"
@@ -55,6 +57,17 @@ const Menu = () => {
             >
               <HiOutlineUser className="menu-icon" />
               Friends
+            </NavLink>
+          </ListItem>
+          <ListItem>
+            <NavLink
+              to="/pages/feeds"
+              className={({ isActive }) =>
+                isActive ? "menu-item-acitve" : "menu-item"
+              }
+            >
+              <IoNewspaperOutline className="menu-icon" />
+              Feeds
             </NavLink>
           </ListItem>
         </List>

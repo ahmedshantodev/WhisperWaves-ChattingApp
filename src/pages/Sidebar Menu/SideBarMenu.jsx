@@ -3,11 +3,12 @@ import React from "react";
 import "./SideBarMenu.css";
 import Menu from "../../components/section/Menu/Menu";
 import Image from "../../components/layout/Image";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const SideBarMenu = () => {
-  const userInfo = useSelector((state) => state.user.information);
+  const activeUserData = useSelector((state) => state.user.information);
+  const navigate = useNavigate();
 
   return (
     <Box
@@ -33,34 +34,37 @@ const SideBarMenu = () => {
           bottom: "40px",
           left: "50%",
           transform: "translateX(-50%)",
-          display: "flex",
-          alignItems: "center",
+          ":hover": {
+            bgcolor: "#dedede"
+          },
+          p: "5px",
+          borderRadius: "10px"
         }}
       >
-        <Image
-          imageLink={userInfo?.photoURL}
-          altText={"profile-image"}
-          className={"profile-image"}
-        />
-        <Box>
-          <Link to={"/pages/account-setting"}>
+        <Link className="link" to={"/pages/account-setting"}>
+          <Image
+            imageLink={activeUserData?.photoURL}
+            altText={"profile-image"}
+            className={"profile-image"}
+          />
+          <Box>
             <Typography
               sx={{
                 fontWeight: "500",
                 whiteSpace: "nowrap",
                 overflow: "hidden",
                 textOverflow: "ellipsis",
-                width: "135px",
+                width: "130px",
                 textTransform: "capitalize",
               }}
             >
-              {userInfo?.displayName}
+              {activeUserData?.displayName}
             </Typography>
             <Typography sx={{ fontSize: "12px", color: "secondaryText.main" }}>
               Profile Edit
             </Typography>
-          </Link>
-        </Box>
+          </Box>
+        </Link>
       </Box>
     </Box>
   );

@@ -24,6 +24,9 @@ const theme = createTheme({
     secondaryText: {
       main: "#7a7a7a",
     },
+    borderColor: {
+      main: "#dedede"
+    }
   },
   typography: {
     fontFamily: ["Inter", "Poppins", "roboto"].join(","),

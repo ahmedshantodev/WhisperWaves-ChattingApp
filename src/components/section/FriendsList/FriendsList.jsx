@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./friends.css";
+import "./friendsList.css";
 import { Box, Button, Typography } from "@mui/material";
 import { HiDotsVertical, HiDotsHorizontal } from "react-icons/hi";
 import SearchBox from "../../layout/SearchBox/SearchBox";
@@ -14,7 +14,7 @@ import {
 } from "firebase/database";
 import { useSelector } from "react-redux";
 
-const Friends = () => {
+const FriendsList = () => {
   const db = getDatabase();
   const [friendsList, setFriendsList] = useState([]);
   const activeUserData = useSelector((state) => state.user.information);
@@ -96,8 +96,9 @@ const Friends = () => {
           p: "0 10px",
         }}
       >
-        {friendsList.map((item , index) => (
-          <Box key={index}
+        {friendsList.map((item, index) => (
+          <Box
+            key={index}
             sx={{
               display: "flex",
               justifyContent: "space-between",
@@ -137,9 +138,16 @@ const Friends = () => {
                     : item.recivername}
                 </Typography>
                 <Typography
-                  sx={{ fontSize: "14px", color: "secondaryText.main" }}
+                  sx={{
+                    fontSize: "14px",
+                    color: "secondaryText.main",
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    width: "240px",
+                  }}
                 >
-                  random messege.....
+                  random messege...
                 </Typography>
               </Box>
             </Box>
@@ -182,4 +190,4 @@ const Friends = () => {
   );
 };
 
-export default Friends;
+export default FriendsList;

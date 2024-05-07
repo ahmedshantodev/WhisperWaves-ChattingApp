@@ -66,9 +66,12 @@ const GroupList = () => {
                 ES MERN 2303
               </Typography>
               <Typography
-                sx={{ fontSize: "14px", color: "secondaryText.main" }}
+                sx={{ fontSize: "14px", color: "secondaryText.main",whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                width: "250px", }}
               >
-                random messege.....
+                random messege...
               </Typography>
             </Box>
           </Box>
