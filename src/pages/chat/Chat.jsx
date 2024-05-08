@@ -796,7 +796,7 @@ const Chat = () => {
             borderRadius: "15px",
             position: "relative",
             overflow: "hidden",
-            transition: "ease-in-out all 0.2s",
+            transition: "ease-in-out all 0.1s",
           }}
         >
           <Box
@@ -884,34 +884,33 @@ const Chat = () => {
             </Box>
           </Box>
         </Box>
-        {friendsProfileOpen && (
-          <Box
-            sx={{
-              transition: "ease-in-out all 0.2s",
-              width: `${friendsProfileOpen ? "30%" : "0%"}`,
-              height: "100%",
-              bgcolor: "white",
-              boxShadow: 3,
-              borderRadius: "15px",
-              m: "0px 0 0 20px",
-              position: "relative",
-              overflow: "hidden",
-              p: "50px 0",
-              textAlign: "center",
-            }}
+
+        <Box
+          sx={{
+            transition: "ease-in-out all 0.1s",
+            width: friendsProfileOpen ? "30%" : "0%",
+            height: "100%",
+            bgcolor: "white",
+            boxShadow: 3,
+            borderRadius: "15px",
+            ml: friendsProfileOpen ? "20px" : "0px",
+            position: "relative",
+            overflow: "hidden",
+            p: "50px 0",
+            textAlign: "center",
+          }}
+        >
+          <Image
+            imageLink={"/public/image/profile image one.png"}
+            altText={"random"}
+            className={"chat-setting-profile"}
+          />
+          <Typography
+            sx={{ fontSize: "20px", m: "5px 0 0 0", fontWeight: "500" }}
           >
-            <Image
-              imageLink={"/public/image/profile image one.png"}
-              altText={"random"}
-              className={"chat-setting-profile"}
-            />
-            <Typography
-              sx={{ fontSize: "20px", m: "5px 0 0 0", fontWeight: "500" }}
-            >
-              Ahmed Shanto
-            </Typography>
-          </Box>
-        )}
+            Ahmed Shanto
+          </Typography>
+        </Box>
       </Box>
     </Box>
   );

@@ -149,7 +149,7 @@ const SignIn = () => {
   const handleFaceBookSignUp = () => {};
 
   useEffect(() => {
-    if (activeUserData.email) {
+    if (activeUserData?.email) {
       navigate("/pages/home")
     }
   } , [])
