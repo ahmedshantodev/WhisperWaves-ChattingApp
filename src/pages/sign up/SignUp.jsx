@@ -166,9 +166,9 @@ const SignIn = () => {
         <Box
           sx={{
             width: { xs: "100%", md: "40%" },
-            height: { xs: "25dvh", xl: "100vh" },
+            height: { xs: "30dvh", xl: "100vh" },
             bgcolor: "primaryColor.main",
-            p: { xs: "10px 10px 0", xl: "70px 0 70px 50px" },
+            p: { xs: "30px 10px 0", xl: "70px 0 70px 50px" },
             borderRadius: { xs: "0", md: "0 70px 70px 0" },
             position: "relative",
             textAlign: { xs: "center", sm: "start" },
@@ -209,7 +209,7 @@ const SignIn = () => {
           <Typography
             variant="h3"
             sx={{
-              mt: { xs: "20px", lg: "70px" },
+              mt: { xs: "30px", lg: "70px" },
               color: "white",
               fontFamily: "Poppins",
               fontSize: { xs: "20px", lg: "40px" },
@@ -242,9 +242,8 @@ const SignIn = () => {
               left: { xs: "50%", xl: 50 },
               transform: "translateX(-50%)",
               fontFamily: "roboto",
-              fontSize: { xs: "10px", xl: "16px" },
-
-              display: "none",
+              fontSize: { xs: "12px", xl: "16px" },
+              width: "100%"
             }}
           >
             Monsur Ahmed Shanto - ES MERN 2303
@@ -256,12 +255,13 @@ const SignIn = () => {
             justifyContent: "center",
             alignItems: "center",
             width: { xs: "100%", xl: "60%" },
-            p: { xs: "30px 30px 10px", sm: "0px" },
+            height: { xs: "70dvh", xl: "100vh" },
+            p: { xs: "0px 30px 0px", sm: "0px" },
             borderRadius: { xs: "35px 35px 0 0", sm: "0" },
             bgcolor: "white",
           }}
         >
-          <Box sx={{ width: "500px" }}>
+          <Box sx={{ width: {xs:"100%", xl: "500px"} }}>
             <Typography
               variant="h3"
               sx={{
@@ -294,7 +294,7 @@ const SignIn = () => {
               sx={{
                 color: "secondaryText.main",
                 fontSize: "12px",
-                mt: { xs: "10px", xl: "70px" },
+                mt: { xs: "20px", xl: "70px" },
                 fontWeight: "500",
                 textAlign: "center",
                 color: "#a1a1a1",
@@ -428,16 +428,15 @@ const SignIn = () => {
                 onClick={handleAccoutCreate}
                 variant="contained"
                 sx={{
-                  mt: { xs: "10px", xl: "55px" },
                   width: "100%",
                   borderRadius: "6px",
                   bgcolor: "primaryColor.main",
-                  py: { xs: "5px", xl: "12px" },
+                  py: { xs: "9px", xl: "12px" },
                   fontWeight: "500",
                   fontFamily: "Poppins",
                   textTransform: "capitalize",
                   fontSize: { xs: "12px", xl: "16px" },
-                  mb: { xs: "15px", xl: "20px" },
+                  m: {xs: "12px 0 16px 0", xl: "55px 0 20px 0"},
                   ":hover": {
                     bgcolor: "primaryColor.main",
                   },
@@ -453,7 +452,7 @@ const SignIn = () => {
             <Link to={"/sign-in"} className="link">
               <Typography
                 sx={{
-                  fontSize: { xs: "12px", xl: "16px" },
+                  fontSize: { xs: "13px", xl: "16px" },
                   fontFamily: "Poppins",
                   color: "#a1a1a1",
                 }}
