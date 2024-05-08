@@ -31,6 +31,13 @@ const theme = createTheme({
   typography: {
     fontFamily: ["Inter", "Poppins", "roboto"].join(","),
   },
+  breakpoints: {
+    xs: 0,
+    sm: 576,
+    md: 768,
+    lg: 1200,
+    xl: 1400
+  }
 });
 
 ReactDOM.createRoot(document.getElementById("root")).render(

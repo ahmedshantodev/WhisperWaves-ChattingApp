@@ -85,7 +85,9 @@ const Chat = () => {
             }}
           >
             <Image
-              imageLink={"/public/image/profile image one.png"}
+              imageLink={
+                "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"
+              }
               altText={"random user image"}
               className={"chat-profile-image"}
             />
@@ -123,7 +125,7 @@ const Chat = () => {
                 30min
               </Typography>
             </Box>
-          </Box>
+          </Box>{" "}
           <Box
             className={"chat-item"}
             sx={{
@@ -140,7 +142,9 @@ const Chat = () => {
             }}
           >
             <Image
-              imageLink={"/public/image/profile image one.png"}
+              imageLink={
+                "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"
+              }
               altText={"random user image"}
               className={"chat-profile-image"}
             />
@@ -178,7 +182,7 @@ const Chat = () => {
                 30min
               </Typography>
             </Box>
-          </Box>
+          </Box>{" "}
           <Box
             className={"chat-item"}
             sx={{
@@ -195,7 +199,9 @@ const Chat = () => {
             }}
           >
             <Image
-              imageLink={"/public/image/profile image one.png"}
+              imageLink={
+                "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"
+              }
               altText={"random user image"}
               className={"chat-profile-image"}
             />
@@ -233,7 +239,7 @@ const Chat = () => {
                 30min
               </Typography>
             </Box>
-          </Box>
+          </Box>{" "}
           <Box
             className={"chat-item"}
             sx={{
@@ -250,7 +256,9 @@ const Chat = () => {
             }}
           >
             <Image
-              imageLink={"/public/image/profile image one.png"}
+              imageLink={
+                "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"
+              }
               altText={"random user image"}
               className={"chat-profile-image"}
             />
@@ -288,7 +296,7 @@ const Chat = () => {
                 30min
               </Typography>
             </Box>
-          </Box>
+          </Box>{" "}
           <Box
             className={"chat-item"}
             sx={{
@@ -305,7 +313,9 @@ const Chat = () => {
             }}
           >
             <Image
-              imageLink={"/public/image/profile image one.png"}
+              imageLink={
+                "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"
+              }
               altText={"random user image"}
               className={"chat-profile-image"}
             />
@@ -343,7 +353,7 @@ const Chat = () => {
                 30min
               </Typography>
             </Box>
-          </Box>
+          </Box>{" "}
           <Box
             className={"chat-item"}
             sx={{
@@ -360,7 +370,9 @@ const Chat = () => {
             }}
           >
             <Image
-              imageLink={"/public/image/profile image one.png"}
+              imageLink={
+                "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"
+              }
               altText={"random user image"}
               className={"chat-profile-image"}
             />
@@ -398,7 +410,7 @@ const Chat = () => {
                 30min
               </Typography>
             </Box>
-          </Box>
+          </Box>{" "}
           <Box
             className={"chat-item"}
             sx={{
@@ -415,7 +427,9 @@ const Chat = () => {
             }}
           >
             <Image
-              imageLink={"/public/image/profile image one.png"}
+              imageLink={
+                "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"
+              }
               altText={"random user image"}
               className={"chat-profile-image"}
             />
@@ -453,7 +467,7 @@ const Chat = () => {
                 30min
               </Typography>
             </Box>
-          </Box>
+          </Box>{" "}
           <Box
             className={"chat-item"}
             sx={{
@@ -470,7 +484,9 @@ const Chat = () => {
             }}
           >
             <Image
-              imageLink={"/public/image/profile image one.png"}
+              imageLink={
+                "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"
+              }
               altText={"random user image"}
               className={"chat-profile-image"}
             />
@@ -508,7 +524,7 @@ const Chat = () => {
                 30min
               </Typography>
             </Box>
-          </Box>
+          </Box>{" "}
           <Box
             className={"chat-item"}
             sx={{
@@ -525,7 +541,9 @@ const Chat = () => {
             }}
           >
             <Image
-              imageLink={"/public/image/profile image one.png"}
+              imageLink={
+                "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"
+              }
               altText={"random user image"}
               className={"chat-profile-image"}
             />
@@ -563,7 +581,7 @@ const Chat = () => {
                 30min
               </Typography>
             </Box>
-          </Box>
+          </Box>{" "}
           <Box
             className={"chat-item"}
             sx={{
@@ -580,7 +598,9 @@ const Chat = () => {
             }}
           >
             <Image
-              imageLink={"/public/image/profile image one.png"}
+              imageLink={
+                "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"
+              }
               altText={"random user image"}
               className={"chat-profile-image"}
             />
@@ -618,7 +638,7 @@ const Chat = () => {
                 30min
               </Typography>
             </Box>
-          </Box>
+          </Box>{" "}
           <Box
             className={"chat-item"}
             sx={{
@@ -635,7 +655,9 @@ const Chat = () => {
             }}
           >
             <Image
-              imageLink={"/public/image/profile image one.png"}
+              imageLink={
+                "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"
+              }
               altText={"random user image"}
               className={"chat-profile-image"}
             />
@@ -673,7 +695,7 @@ const Chat = () => {
                 30min
               </Typography>
             </Box>
-          </Box>
+          </Box>{" "}
           <Box
             className={"chat-item"}
             sx={{
@@ -690,7 +712,9 @@ const Chat = () => {
             }}
           >
             <Image
-              imageLink={"/public/image/profile image one.png"}
+              imageLink={
+                "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"
+              }
               altText={"random user image"}
               className={"chat-profile-image"}
             />
@@ -728,7 +752,7 @@ const Chat = () => {
                 30min
               </Typography>
             </Box>
-          </Box>
+          </Box>{" "}
           <Box
             className={"chat-item"}
             sx={{
@@ -745,7 +769,123 @@ const Chat = () => {
             }}
           >
             <Image
-              imageLink={"/public/image/profile image one.png"}
+              imageLink={
+                "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"
+              }
+              altText={"random user image"}
+              className={"chat-profile-image"}
+            />
+            <Box sx={{ ml: "16px" }}>
+              <Typography
+                className="hover-white"
+                variant="h5"
+                sx={{ fontSize: "18px", fontWeight: "semiBold" }}
+              >
+                ES MERN 2303
+              </Typography>
+              <Typography
+                className="hover-gray"
+                sx={{
+                  fontSize: "14px",
+                  color: "secondaryText.main",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  width: "220px",
+                }}
+              >
+                random messege....
+              </Typography>
+              <Typography
+                className="hover-gray"
+                sx={{
+                  fontSize: "14px",
+                  color: "secondaryText.main",
+                  position: "absolute",
+                  right: "10px",
+                  top: "10px",
+                }}
+              >
+                30min
+              </Typography>
+            </Box>
+          </Box>{" "}
+          <Box
+            className={"chat-item"}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              p: "14px 12px",
+              borderRadius: "6px",
+              position: "relative",
+              transition: "0.3s",
+              ":hover": {
+                bgcolor: "#556487",
+              },
+              cursor: "pointer",
+            }}
+          >
+            <Image
+              imageLink={
+                "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"
+              }
+              altText={"random user image"}
+              className={"chat-profile-image"}
+            />
+            <Box sx={{ ml: "16px" }}>
+              <Typography
+                className="hover-white"
+                variant="h5"
+                sx={{ fontSize: "18px", fontWeight: "semiBold" }}
+              >
+                ES MERN 2303
+              </Typography>
+              <Typography
+                className="hover-gray"
+                sx={{
+                  fontSize: "14px",
+                  color: "secondaryText.main",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  width: "220px",
+                }}
+              >
+                random messege....
+              </Typography>
+              <Typography
+                className="hover-gray"
+                sx={{
+                  fontSize: "14px",
+                  color: "secondaryText.main",
+                  position: "absolute",
+                  right: "10px",
+                  top: "10px",
+                }}
+              >
+                30min
+              </Typography>
+            </Box>
+          </Box>{" "}
+          <Box
+            className={"chat-item"}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              p: "14px 12px",
+              borderRadius: "6px",
+              position: "relative",
+              transition: "0.3s",
+              ":hover": {
+                bgcolor: "#556487",
+              },
+              cursor: "pointer",
+            }}
+          >
+            <Image
+              imageLink={
+                "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"
+              }
               altText={"random user image"}
               className={"chat-profile-image"}
             />
@@ -819,7 +959,9 @@ const Chat = () => {
             >
               <Link className="chat-user-satting-page">
                 <Image
-                  imageLink={"/public/image/profile image one.png"}
+                  imageLink={
+                    "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"
+                  }
                   altText={"random user image"}
                   className={"chat-profile-image"}
                 />
@@ -901,7 +1043,9 @@ const Chat = () => {
           }}
         >
           <Image
-            imageLink={"/public/image/profile image one.png"}
+            imageLink={
+              "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"
+            }
             altText={"random"}
             className={"chat-setting-profile"}
           />

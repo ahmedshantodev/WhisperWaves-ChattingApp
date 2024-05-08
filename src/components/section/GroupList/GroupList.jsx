@@ -32,7 +32,7 @@ const GroupList = () => {
         <SearchBox margin={"16px 0 0 0"} />
       </Box>
       <Box sx={{height: "75%" , overflowY: "auto", p: "0 10px"}}>
-        <Box
+      <Box
           sx={{
             display: "flex",
             justifyContent: "space-between",
@@ -54,7 +54,7 @@ const GroupList = () => {
             }}
           >
             <Image
-              imageLink={"/public/image/Ellipse 1.png"}
+              imageLink={"https://myways-public-data-prod.s3.ap-south-1.amazonaws.com/myways-resource-library/blogs/stats-related-to-mern-stack-in-industry_Image_blogs.jpg"}
               altText={"userProfile"}
               className={"group-profile-image"}
             />
@@ -76,8 +76,7 @@ const GroupList = () => {
             </Box>
           </Box>
           <Button variant="contained">Join</Button>
-        </Box>
-        <Box
+        </Box><Box
           sx={{
             display: "flex",
             justifyContent: "space-between",
@@ -99,7 +98,7 @@ const GroupList = () => {
             }}
           >
             <Image
-              imageLink={"/public/image/Ellipse 1.png"}
+              imageLink={"https://myways-public-data-prod.s3.ap-south-1.amazonaws.com/myways-resource-library/blogs/stats-related-to-mern-stack-in-industry_Image_blogs.jpg"}
               altText={"userProfile"}
               className={"group-profile-image"}
             />
@@ -111,15 +110,17 @@ const GroupList = () => {
                 ES MERN 2303
               </Typography>
               <Typography
-                sx={{ fontSize: "14px", color: "secondaryText.main" }}
+                sx={{ fontSize: "14px", color: "secondaryText.main",whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                width: "250px", }}
               >
-                random messege.....
+                random messege...
               </Typography>
             </Box>
           </Box>
           <Button variant="contained">Join</Button>
-        </Box>
-        <Box
+        </Box><Box
           sx={{
             display: "flex",
             justifyContent: "space-between",
@@ -141,7 +142,7 @@ const GroupList = () => {
             }}
           >
             <Image
-              imageLink={"/public/image/Ellipse 1.png"}
+              imageLink={"https://myways-public-data-prod.s3.ap-south-1.amazonaws.com/myways-resource-library/blogs/stats-related-to-mern-stack-in-industry_Image_blogs.jpg"}
               altText={"userProfile"}
               className={"group-profile-image"}
             />
@@ -153,15 +154,17 @@ const GroupList = () => {
                 ES MERN 2303
               </Typography>
               <Typography
-                sx={{ fontSize: "14px", color: "secondaryText.main" }}
+                sx={{ fontSize: "14px", color: "secondaryText.main",whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                width: "250px", }}
               >
-                random messege.....
+                random messege...
               </Typography>
             </Box>
           </Box>
           <Button variant="contained">Join</Button>
-        </Box>
-        <Box
+        </Box><Box
           sx={{
             display: "flex",
             justifyContent: "space-between",
@@ -183,7 +186,7 @@ const GroupList = () => {
             }}
           >
             <Image
-              imageLink={"/public/image/Ellipse 1.png"}
+              imageLink={"https://myways-public-data-prod.s3.ap-south-1.amazonaws.com/myways-resource-library/blogs/stats-related-to-mern-stack-in-industry_Image_blogs.jpg"}
               altText={"userProfile"}
               className={"group-profile-image"}
             />
@@ -195,15 +198,17 @@ const GroupList = () => {
                 ES MERN 2303
               </Typography>
               <Typography
-                sx={{ fontSize: "14px", color: "secondaryText.main" }}
+                sx={{ fontSize: "14px", color: "secondaryText.main",whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                width: "250px", }}
               >
-                random messege.....
+                random messege...
               </Typography>
             </Box>
           </Box>
           <Button variant="contained">Join</Button>
-        </Box>
-        <Box
+        </Box><Box
           sx={{
             display: "flex",
             justifyContent: "space-between",
@@ -225,7 +230,7 @@ const GroupList = () => {
             }}
           >
             <Image
-              imageLink={"/public/image/Ellipse 1.png"}
+              imageLink={"https://myways-public-data-prod.s3.ap-south-1.amazonaws.com/myways-resource-library/blogs/stats-related-to-mern-stack-in-industry_Image_blogs.jpg"}
               altText={"userProfile"}
               className={"group-profile-image"}
             />
@@ -237,15 +242,17 @@ const GroupList = () => {
                 ES MERN 2303
               </Typography>
               <Typography
-                sx={{ fontSize: "14px", color: "secondaryText.main" }}
+                sx={{ fontSize: "14px", color: "secondaryText.main",whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                width: "250px", }}
               >
-                random messege.....
+                random messege...
               </Typography>
             </Box>
           </Box>
           <Button variant="contained">Join</Button>
-        </Box>
-        <Box
+        </Box><Box
           sx={{
             display: "flex",
             justifyContent: "space-between",
@@ -267,7 +274,7 @@ const GroupList = () => {
             }}
           >
             <Image
-              imageLink={"/public/image/Ellipse 1.png"}
+              imageLink={"https://myways-public-data-prod.s3.ap-south-1.amazonaws.com/myways-resource-library/blogs/stats-related-to-mern-stack-in-industry_Image_blogs.jpg"}
               altText={"userProfile"}
               className={"group-profile-image"}
             />
@@ -279,15 +286,17 @@ const GroupList = () => {
                 ES MERN 2303
               </Typography>
               <Typography
-                sx={{ fontSize: "14px", color: "secondaryText.main" }}
+                sx={{ fontSize: "14px", color: "secondaryText.main",whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                width: "250px", }}
               >
-                random messege.....
+                random messege...
               </Typography>
             </Box>
           </Box>
           <Button variant="contained">Join</Button>
-        </Box>
-        <Box
+        </Box><Box
           sx={{
             display: "flex",
             justifyContent: "space-between",
@@ -309,7 +318,7 @@ const GroupList = () => {
             }}
           >
             <Image
-              imageLink={"/public/image/Ellipse 1.png"}
+              imageLink={"https://myways-public-data-prod.s3.ap-south-1.amazonaws.com/myways-resource-library/blogs/stats-related-to-mern-stack-in-industry_Image_blogs.jpg"}
               altText={"userProfile"}
               className={"group-profile-image"}
             />
@@ -321,15 +330,17 @@ const GroupList = () => {
                 ES MERN 2303
               </Typography>
               <Typography
-                sx={{ fontSize: "14px", color: "secondaryText.main" }}
+                sx={{ fontSize: "14px", color: "secondaryText.main",whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                width: "250px", }}
               >
-                random messege.....
+                random messege...
               </Typography>
             </Box>
           </Box>
           <Button variant="contained">Join</Button>
-        </Box>
-        <Box
+        </Box><Box
           sx={{
             display: "flex",
             justifyContent: "space-between",
@@ -351,7 +362,7 @@ const GroupList = () => {
             }}
           >
             <Image
-              imageLink={"/public/image/Ellipse 1.png"}
+              imageLink={"https://myways-public-data-prod.s3.ap-south-1.amazonaws.com/myways-resource-library/blogs/stats-related-to-mern-stack-in-industry_Image_blogs.jpg"}
               altText={"userProfile"}
               className={"group-profile-image"}
             />
@@ -363,51 +374,12 @@ const GroupList = () => {
                 ES MERN 2303
               </Typography>
               <Typography
-                sx={{ fontSize: "14px", color: "secondaryText.main" }}
+                sx={{ fontSize: "14px", color: "secondaryText.main",whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                width: "250px", }}
               >
-                random messege.....
-              </Typography>
-            </Box>
-          </Box>
-          <Button variant="contained">Join</Button>
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            py: "8px",
-              px: "5px",
-              borderBottom: "1px solid #dedede",
-              ":hover": {
-                bgcolor: "#dedede",
-              },
-              cursor: "pointer",
-          }}
-          className={"group-list-item"}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <Image
-              imageLink={"/public/image/Ellipse 1.png"}
-              altText={"userProfile"}
-              className={"group-profile-image"}
-            />
-            <Box sx={{ ml: "16px" }}>
-              <Typography
-                variant="h5"
-                sx={{ fontSize: "18px", fontWeight: "semiBold" }}
-              >
-                ES MERN 2303
-              </Typography>
-              <Typography
-                sx={{ fontSize: "14px", color: "secondaryText.main" }}
-              >
-                random messege.....
+                random messege...
               </Typography>
             </Box>
           </Box>
