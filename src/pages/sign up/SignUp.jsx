@@ -90,7 +90,7 @@ const SignIn = () => {
               set(ref(db, "users/" + userCredential.user.uid), {
                 username: signUpData.name,
                 email: signUpData.email,
-                profile_picture: userCredential.user.photoURL,
+                profile_picture: userCredential?.user?.photoURL,
               });
             })
             .then(() => {
@@ -132,7 +132,7 @@ const SignIn = () => {
         set(ref(db, "users/" + result.user.uid), {
           username: result.user.displayName,
           email: result.user.email,
-          profile_picture: result.user.photoURL,
+          profile_picture: result?.user?.photoURL,
         });
         localStorage.setItem("user", JSON.stringify(result.user));
         dispatch(activeUser(result.user));

@@ -13,9 +13,7 @@ const People = () => {
   const db = getDatabase();
   const activeUserData = useSelector((state) => state.user.information);
   const [userList, setuserList] = useState([]);
-  const [friendRequstPendingButton, setFriendRequstPendingButton] = useState(
-    []
-  );
+  const [friendRequstPendingButton, setFriendRequstPendingButton] = useState([]);
   const [friendsButton, setFriendsButton] = useState([]);
   const [blockButton, setBlockButton] = useState([]);
 
@@ -49,6 +47,7 @@ const People = () => {
       setFriendRequstPendingButton(friendRequstArray);
     });
   }, []);
+
 
   // frineds
   useEffect(() => {

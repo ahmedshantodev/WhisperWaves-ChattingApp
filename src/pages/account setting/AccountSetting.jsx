@@ -118,7 +118,7 @@ const AccountSetting = () => {
             />
             <Image
               onClick={handleProfileImageModalOpen}
-              imageLink={userInfo.photoURL}
+              imageLink={userInfo?.photoURL}
               altText={"random-profile"}
               className={"profileImage"}
             />
@@ -242,7 +242,7 @@ const AccountSetting = () => {
                   fontSize: "30px",
                 }}
               >
-                {userInfo.displayName}
+                {userInfo?.displayName}
               </Typography>
               <Typography className="bio" sx={{ width: "380px" }}>
                 Stay Home Stay Safe

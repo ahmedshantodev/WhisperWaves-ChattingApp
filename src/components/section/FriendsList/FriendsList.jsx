@@ -18,7 +18,6 @@ const FriendsList = () => {
   const db = getDatabase();
   const [friendsList, setFriendsList] = useState([]);
   const activeUserData = useSelector((state) => state.user.information);
-  // const [itemMenuOpen, setItemMenuOpen] = useState(false);
 
   useEffect(() => {
     onValue(ref(db, "friends"), (snapshot) => {
