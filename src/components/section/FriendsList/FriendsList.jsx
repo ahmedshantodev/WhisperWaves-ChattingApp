@@ -120,9 +120,7 @@ const FriendsList = () => {
             >
               <Image
                 imageLink={
-                  activeUserData.uid == item.reciverid
-                    ? item.senderprofile
-                    : item.reciverprofile
+                  activeUserData.uid == item.reciverid ? item.senderprofile : item.reciverprofile
                 }
                 altText={"userProfile"}
                 className={"group-profile-image"}

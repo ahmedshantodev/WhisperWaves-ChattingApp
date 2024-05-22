@@ -54,8 +54,6 @@ const GroupList = () => {
     });
   }, []);
 
-  console.log(groupInvitationList)
-
   const handleGroupJoin = (item) => {
     set(push(ref(db, "groupjoinrequst")), {
       ...item,
@@ -295,19 +293,9 @@ const GroupList = () => {
                 </Typography>
               </Box>
             </Box>
-            {groupPendingButtonList.includes(
-              activeUserData.uid + item.groupid
-            ) ||
-            groupPendingButtonList.includes(
-              item.groupid + activeUserData.uid
-            ) ? (
+            {groupPendingButtonList.includes(activeUserData.uid + item.groupid) || groupPendingButtonList.includes( item.groupid + activeUserData.uid) ? (
               <Button variant="contained" color="secondary">pending</Button>
-            ) : groupJoinedButtonList.includes(
-                activeUserData.uid + item.groupid
-              ) ||
-              groupPendingButtonList.includes(
-                item.groupid + activeUserData.uid
-              ) ? (
+            ) : groupJoinedButtonList.includes(activeUserData.uid + item.groupid) || groupPendingButtonList.includes(item.groupid + activeUserData.uid) ? (
               <Button
                 variant="contained"
                 color="success"
